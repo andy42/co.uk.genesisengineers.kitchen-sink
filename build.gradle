@@ -11,6 +11,17 @@ repositories {
     mavenCentral()
 }
 
+
+sourceSets.main {
+    resources {
+        srcDirs = ['build/generated/resources', 'src/main/resources']
+    }
+    java {
+        srcDirs = ['build/generated/java','src/main/java']
+    }
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile project(':co.uk.genesisengineers.core')
 }
