@@ -161,7 +161,6 @@ public class Main implements MainWindow.OnWindowCloseListener {
         long currentTime = getCurrentTime();
         long timeDiff = (currentTime - lastUpdateTime);
         lastUpdateTime = currentTime;
-        System.out.print("time diff = "+timeDiff+"\n");
 
         if(timeDiff < 16){
             return Math.toIntExact(timeDiff - 16);
@@ -201,21 +200,22 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
-
-
             visualisation.clearMatrixStack();
 
             MotionEvent motionEvent = Mouse.getInstance().getNextMotionEvent();
             while (motionEvent != null){
-                ActivityManager.getInstance().dispatchTouchEvent(motionEvent);
+               if(ActivityManager.getInstance().dispatchTouchEvent(motionEvent)){
+                   systemHandler.dispatchTouchEvent(motionEvent);
+               }
                 motionEvent = Mouse.getInstance().getNextMotionEvent();
             }
 
             KeyMapper.getInstance().update();
-
             KeyEvent keyEvent = KeyMapper.getInstance().getNextKeyEvent();
             while (keyEvent != null){
-                ActivityManager.getInstance().dispatchKeyEvent(keyEvent);
+                if(!ActivityManager.getInstance().dispatchKeyEvent(keyEvent)){
+                    systemHandler.dispatchKeyEvent(keyEvent);
+                }
                 keyEvent = KeyMapper.getInstance().getNextKeyEvent();
             }
 
