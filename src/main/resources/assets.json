@@ -1,119 +1,119 @@
 {
   "files":[
 
-    {
-      "name" : "tiles_png",
-      "id" : 0,
-      "filePath" : "textures/tiles.png",
-      "type" : "textures"
-    },
-    {
-      "name" : "test_texture_png",
-      "id" : 1,
-      "filePath" : "textures/test_texture.png",
-      "type" : "textures"
-    },
-    {
-      "name" : "test_texture_png",
-      "id" : 2,
-      "filePath" : "test/test_texture.png",
-      "type" : "test"
-    },
-    {
-      "name" : "item_view_xml",
-      "id" : 3,
-      "filePath" : "layouts/item_view.xml",
-      "type" : "layouts"
-    },
-    {
-      "name" : "basic_layout_xml",
-      "id" : 4,
-      "filePath" : "layouts/basic_layout.xml",
-      "type" : "layouts"
-    },
-    {
-      "name" : "list_layout_xml",
-      "id" : 5,
-      "filePath" : "layouts/list_layout.xml",
-      "type" : "layouts"
-    },
-    {
-      "name" : "activity_tileset_editor_xml",
-      "id" : 6,
-      "filePath" : "layouts/activity_tileset_editor.xml",
-      "type" : "layouts"
-    },
-    {
-      "name" : "font_vert",
-      "id" : 7,
-      "filePath" : "shaders/font.vert",
-      "type" : "shaders"
-    },
-    {
-      "name" : "textured_frag",
-      "id" : 8,
-      "filePath" : "shaders/textured.frag",
-      "type" : "shaders"
-    },
-    {
-      "name" : "coloured_frag",
-      "id" : 9,
-      "filePath" : "shaders/coloured.frag",
-      "type" : "shaders"
-    },
-    {
-      "name" : "textured_vert",
-      "id" : 10,
-      "filePath" : "shaders/textured.vert",
-      "type" : "shaders"
-    },
-    {
-      "name" : "font_frag",
-      "id" : 11,
-      "filePath" : "shaders/font.frag",
-      "type" : "shaders"
-    },
-    {
-      "name" : "coloured_vert",
-      "id" : 12,
-      "filePath" : "shaders/coloured.vert",
-      "type" : "shaders"
-    },
-    {
-      "name" : "harrington_png",
-      "id" : 13,
-      "filePath" : "fonts/harrington.png",
-      "type" : "fonts"
-    },
-    {
-      "name" : "harrington_fnt",
-      "id" : 14,
-      "filePath" : "fonts/harrington.fnt",
-      "type" : "fonts"
-    },
-    {
-      "name" : "arial_png",
-      "id" : 15,
-      "filePath" : "fonts/arial.png",
-      "type" : "fonts"
-    },
-    {
-      "name" : "arial_fnt",
-      "id" : 16,
-      "filePath" : "fonts/arial.fnt",
-      "type" : "fonts"
-    },
-    {
-      "name" : "arial_ttf",
-      "id" : 17,
-      "filePath" : "fonts/arial.ttf",
-      "type" : "fonts"
-    },
-    {
-      "name" : "default_json",
-      "id" : 18,
-      "filePath" : "environmentVariables/default.json",
-      "type" : "environmentVariables"
-    }
+      {
+         "name" : "default_json",
+         "id" : 0,
+         "filePath" : "environmentVariables/default.json",
+         "type" : "environmentVariables"
+      },
+      {
+         "name" : "arial_fnt",
+         "id" : 1,
+         "filePath" : "fonts/arial.fnt",
+         "type" : "fonts"
+      },
+      {
+         "name" : "arial_png",
+         "id" : 2,
+         "filePath" : "fonts/arial.png",
+         "type" : "fonts"
+      },
+      {
+         "name" : "arial_ttf",
+         "id" : 3,
+         "filePath" : "fonts/arial.ttf",
+         "type" : "fonts"
+      },
+      {
+         "name" : "harrington_fnt",
+         "id" : 4,
+         "filePath" : "fonts/harrington.fnt",
+         "type" : "fonts"
+      },
+      {
+         "name" : "harrington_png",
+         "id" : 5,
+         "filePath" : "fonts/harrington.png",
+         "type" : "fonts"
+      },
+      {
+         "name" : "activity_tileset_editor_xml",
+         "id" : 6,
+         "filePath" : "layouts/activity_tileset_editor.xml",
+         "type" : "layouts"
+      },
+      {
+         "name" : "basic_layout_xml",
+         "id" : 7,
+         "filePath" : "layouts/basic_layout.xml",
+         "type" : "layouts"
+      },
+      {
+         "name" : "item_view_xml",
+         "id" : 8,
+         "filePath" : "layouts/item_view.xml",
+         "type" : "layouts"
+      },
+      {
+         "name" : "list_layout_xml",
+         "id" : 9,
+         "filePath" : "layouts/list_layout.xml",
+         "type" : "layouts"
+      },
+      {
+         "name" : "coloured_frag",
+         "id" : 10,
+         "filePath" : "shaders/coloured.frag",
+         "type" : "shaders"
+      },
+      {
+         "name" : "coloured_vert",
+         "id" : 11,
+         "filePath" : "shaders/coloured.vert",
+         "type" : "shaders"
+      },
+      {
+         "name" : "font_frag",
+         "id" : 12,
+         "filePath" : "shaders/font.frag",
+         "type" : "shaders"
+      },
+      {
+         "name" : "font_vert",
+         "id" : 13,
+         "filePath" : "shaders/font.vert",
+         "type" : "shaders"
+      },
+      {
+         "name" : "textured_frag",
+         "id" : 14,
+         "filePath" : "shaders/textured.frag",
+         "type" : "shaders"
+      },
+      {
+         "name" : "textured_vert",
+         "id" : 15,
+         "filePath" : "shaders/textured.vert",
+         "type" : "shaders"
+      },
+      {
+         "name" : "test_texture_png",
+         "id" : 16,
+         "filePath" : "test/test_texture.png",
+         "type" : "test"
+      },
+      {
+         "name" : "test_texture_png",
+         "id" : 17,
+         "filePath" : "textures/test_texture.png",
+         "type" : "textures"
+      },
+      {
+         "name" : "tiles_png",
+         "id" : 18,
+         "filePath" : "textures/tiles.png",
+         "type" : "textures"
+      }
   ]
 }

@@ -22,6 +22,7 @@ import visualisation.TextureManager;
 import visualisation.Visualisation;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.glfwPollEvents;
@@ -40,7 +41,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
         mainWindow = new MainWindow();
         mainWindow.setOnWindowCloseListener(this);
 
-        if (init() == false) {
+        if (!init()) {
             System.exit(0);
         }
         worldInit();
@@ -56,9 +57,11 @@ public class Main implements MainWindow.OnWindowCloseListener {
         Resources resources = context.getResources();
         resources.init();
 
+        int windowWidth = 1200;
+        int windowHeight = 800;
 
 
-        if (mainWindow.init(600, 400) == false) {
+        if (!mainWindow.init(windowWidth, windowHeight)) {
             return false;
         }
 
@@ -73,7 +76,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
         // visualisation
         Visualisation visualisation = Visualisation.getInstance();
         visualisation.init(mainWindow.getWindow());
-        visualisation.setWindowDimensions(600, 400);
+        visualisation.setWindowDimensions(windowWidth, windowHeight);
 
         // load textures
         //Texture texture = TextureManager.getInstance().addTexture("textures/test_texture.png");
@@ -90,8 +93,6 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
         ActivityManager.getInstance().addActivity(new TestActivity());
         ActivityManager.getInstance().addActivity(new RecyclerViewActivity());
-
-        Logger.info("getResource2 getPath "+ Main.class.getClassLoader().getResource("test.txt").getPath());
 
         return true;
     }
@@ -149,24 +150,49 @@ public class Main implements MainWindow.OnWindowCloseListener {
         systemHandler.init(entityHandler);
     }
 
+    private long getCurrentTime(){
+        return (new Date()).getTime();
+    }
+
+    private long lastUpdateTime = getCurrentTime();
+    private int sleepTime = 0;
+
+    private int calculateThreadSleepTime(){
+        long currentTime = getCurrentTime();
+        long timeDiff = (currentTime - lastUpdateTime);
+        lastUpdateTime = currentTime;
+        System.out.print("time diff = "+timeDiff+"\n");
+
+        if(timeDiff < 16){
+            return Math.toIntExact(timeDiff - 16);
+        } else {
+            return 0;
+        }
+    }
+    private void sleepThread(int time){
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void loop () {
 
         Visualisation visualisation = Visualisation.getInstance();
 
         List<File> fileList = FileLoader.listFiles("test");
-        for(int i=0; i < fileList.size(); i++){
-            Logger.info(fileList.get(i).getAbsolutePath());
+        for (File aFileList : fileList) {
+            Logger.info(aFileList.getAbsolutePath());
         }
 
+        lastUpdateTime = getCurrentTime();
 
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
-
         while (!mainWindow.shouldClose()) {
 
-
-
-
+            sleepTime = calculateThreadSleepTime();
 
             ClockHandler.getInstance().update();
 
@@ -200,11 +226,8 @@ public class Main implements MainWindow.OnWindowCloseListener {
             visualisation.finalise();
 
             glfwPollEvents();
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+            if(sleepTime > 0) sleepThread(sleepTime);
         }
     }
 
