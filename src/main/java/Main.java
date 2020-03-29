@@ -1,6 +1,8 @@
 import clock.ClockHandler;
 import com.sun.javafx.geom.Vec3f;
 import content.Context;
+import content.entityPrototypeFactory.EntityPrototypeFactory;
+import content.entityPrototypeFactory.EntityPrototypeFactoryJSON;
 import content.Resources;
 import entity.Entity;
 import entity.EntityHandler;
@@ -35,7 +37,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
     private SystemHandler systemHandler = new SystemHandler();
     private EntityHandler entityHandler = new EntityHandler();
 
-
+    private EntityPrototypeFactory entityPrototypeFactory = new EntityPrototypeFactoryJSON();
 
     private void run (String[] args) {
         mainWindow = new MainWindow();
@@ -94,21 +96,15 @@ public class Main implements MainWindow.OnWindowCloseListener {
         ActivityManager.getInstance().addActivity(new TestActivity());
         ActivityManager.getInstance().addActivity(new RecyclerViewActivity());
 
+        entityPrototypeFactory.loadEntities(resources.getAssetFileAsString(R.entities.entityList_json));
         return true;
     }
 
     private void worldInit () {
 
-
+        entityHandler.addEntity(entityPrototypeFactory.cloneEntity("player"));
 
         Entity entity = entityHandler.createEntity();
-        entity.addComponent(new Position());
-        entity.addComponent(new Collision(new Vector2Df(25, 25)));
-        entity.addComponent(new Movement(new Vector2Df(100, 100)));
-        entity.addComponent(new BasicTexturedSquare(new Vector2Df(25, 25), 0, 0));
-        entity.addComponent(new KeyboardController());
-
-        entity = entityHandler.createEntity();
         entity.addComponent(new Position(45));
         entity.addComponent(new BasicTexturedSquare(new Vector2Df(100, 100), 0, 0));
         entity.addComponent(new Collision(new Vector2Df(100, 100)));
@@ -128,8 +124,9 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
         entity = entityHandler.createEntity();
         entity.addComponent(new Position());
-        entity.addComponent(new BasicColouredSquare(new Vector2Df(100, 100), new Vec3f(1f, 0f, 0f)));
-        entity.addComponent(new Collision(new Vector2Df(100, 100)));
+        entity.addComponent(new BasicColouredSquare(new Vector2Df(50, 50), new Vec3f(1f, 0f, 0f)));
+        entity.addComponent(new Collision(new Vector2Df(50, 50)));
+        entity.addComponent(new Select(new Vector2Df(60, 60), 0,0,false));
         entity.addComponent(new Movement(new Vector2Df(300, 300), //startPosition
                 new Vector2Df(0, 0), //startVelocity
                 new Vector2Df(0, 0) //acceleration
@@ -146,6 +143,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
         systemHandler.addSystem(new MapRenderSystem());
         systemHandler.addSystem(new RenderTextureSystem());
         systemHandler.addSystem(new RenderColourSystem());
+        systemHandler.addSystem(new MouseSelectSystem());
 
         systemHandler.init(entityHandler);
     }
@@ -204,7 +202,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
             MotionEvent motionEvent = Mouse.getInstance().getNextMotionEvent();
             while (motionEvent != null){
-               if(ActivityManager.getInstance().dispatchTouchEvent(motionEvent)){
+               if(!ActivityManager.getInstance().dispatchTouchEvent(motionEvent)){
                    systemHandler.dispatchTouchEvent(motionEvent);
                }
                 motionEvent = Mouse.getInstance().getNextMotionEvent();
