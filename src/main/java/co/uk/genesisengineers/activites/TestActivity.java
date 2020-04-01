@@ -1,3 +1,6 @@
+package co.uk.genesisengineers.activites;
+
+import co.uk.genesisengineers.kitchenSink.R;
 import com.sun.javafx.geom.Vec3f;
 import ui.activity.Activity;
 import ui.view.*;
@@ -18,7 +21,7 @@ public class TestActivity extends Activity implements View.OnClickListener{
     @Override
     public void onCreate () {
         LayoutInflater layoutInflater = new LayoutInflater();
-        this.view = layoutInflater.inflate("basic_layout.xml", null);
+        this.view = layoutInflater.inflate(this, R.layouts.basic_layout_xml, null);
 
         this.getResources();
 
