@@ -44,80 +44,86 @@
          "type" : "fonts"
       },
       {
-         "name" : "activity_tileset_editor_xml",
+         "name" : "activity_entity_inspector_xml",
          "id" : 7,
+         "filePath" : "layouts/activity_entity_inspector.xml",
+         "type" : "layouts"
+      },
+      {
+         "name" : "activity_tileset_editor_xml",
+         "id" : 8,
          "filePath" : "layouts/activity_tileset_editor.xml",
          "type" : "layouts"
       },
       {
          "name" : "basic_layout_xml",
-         "id" : 8,
+         "id" : 9,
          "filePath" : "layouts/basic_layout.xml",
          "type" : "layouts"
       },
       {
          "name" : "item_view_xml",
-         "id" : 9,
+         "id" : 10,
          "filePath" : "layouts/item_view.xml",
          "type" : "layouts"
       },
       {
          "name" : "list_layout_xml",
-         "id" : 10,
+         "id" : 11,
          "filePath" : "layouts/list_layout.xml",
          "type" : "layouts"
       },
       {
          "name" : "coloured_frag",
-         "id" : 11,
+         "id" : 12,
          "filePath" : "shaders/coloured.frag",
          "type" : "shaders"
       },
       {
          "name" : "coloured_vert",
-         "id" : 12,
+         "id" : 13,
          "filePath" : "shaders/coloured.vert",
          "type" : "shaders"
       },
       {
          "name" : "font_frag",
-         "id" : 13,
+         "id" : 14,
          "filePath" : "shaders/font.frag",
          "type" : "shaders"
       },
       {
          "name" : "font_vert",
-         "id" : 14,
+         "id" : 15,
          "filePath" : "shaders/font.vert",
          "type" : "shaders"
       },
       {
          "name" : "textured_frag",
-         "id" : 15,
+         "id" : 16,
          "filePath" : "shaders/textured.frag",
          "type" : "shaders"
       },
       {
          "name" : "textured_vert",
-         "id" : 16,
+         "id" : 17,
          "filePath" : "shaders/textured.vert",
          "type" : "shaders"
       },
       {
          "name" : "test_texture_png",
-         "id" : 17,
+         "id" : 18,
          "filePath" : "test/test_texture.png",
          "type" : "test"
       },
       {
          "name" : "test_texture_png",
-         "id" : 18,
+         "id" : 19,
          "filePath" : "textures/test_texture.png",
          "type" : "textures"
       },
       {
          "name" : "tiles_png",
-         "id" : 19,
+         "id" : 20,
          "filePath" : "textures/tiles.png",
          "type" : "textures"
       }
