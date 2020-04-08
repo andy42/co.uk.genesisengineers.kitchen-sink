@@ -1,7 +1,10 @@
+package co.uk.genesisengineers;
+
 import clock.ClockHandler;
+import co.uk.genesisengineers.activites.TestActivity;
 import com.sun.javafx.geom.Vec3f;
-import content.Context;
-import content.Resources;
+import content.entityPrototypeFactory.EntityPrototypeFactory;
+import content.entityPrototypeFactory.json.EntityPrototypeFactoryJSON;
 import entity.Entity;
 import entity.EntityHandler;
 import entity.component.types.*;
@@ -12,7 +15,6 @@ import input.Mouse;
 import system.SystemHandler;
 import system.types.*;
 import ui.ActivityManager;
-import ui.activity.RecyclerViewActivity;
 import util.FileLoader;
 import util.Logger;
 import util.Vector2Df;
@@ -20,6 +22,9 @@ import visualisation.MainWindow;
 import visualisation.Texture;
 import visualisation.TextureManager;
 import visualisation.Visualisation;
+
+import co.uk.genesisengineers.kitchenSink.R;
+import co.uk.genesisengineers.kitchenSink.recyclerViewTest.*;
 
 import java.io.File;
 import java.util.Date;
@@ -34,8 +39,10 @@ public class Main implements MainWindow.OnWindowCloseListener {
     private MainWindow mainWindow;
     private SystemHandler systemHandler = new SystemHandler();
     private EntityHandler entityHandler = new EntityHandler();
+    private ActivityManager activityManager;
+    private ApplicationContext applicationContext;
 
-
+    private EntityPrototypeFactory entityPrototypeFactory = new EntityPrototypeFactoryJSON();
 
     private void run (String[] args) {
         mainWindow = new MainWindow();
@@ -53,9 +60,9 @@ public class Main implements MainWindow.OnWindowCloseListener {
     private boolean init () {
         Logger.debug("Debug messages enabled.");
 
-        Context context = new Context();
-        Resources resources = context.getResources();
-        resources.init();
+        applicationContext = new ApplicationContext();
+
+        activityManager = ActivityManager.createInstance(applicationContext);
 
         int windowWidth = 1200;
         int windowHeight = 800;
@@ -80,11 +87,11 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
         // load textures
         //Texture texture = TextureManager.getInstance().addTexture("textures/test_texture.png");
-        Texture texture = TextureManager.getInstance().addTexture(resources.getAssetFilePath(R.textures.test_texture_png));
+        Texture texture = TextureManager.getInstance().addTexture(applicationContext.getResources().getAssetFilePath(R.textures.test_texture_png));
         texture.addTextureRegion(new Vector2Df(0, 0), new Vector2Df(9, 9));
 
         //texture = TextureManager.getInstance().addTexture("textures/tiles.png");
-        texture = TextureManager.getInstance().addTexture(resources.getAssetFilePath(R.textures.tiles_png));
+        texture = TextureManager.getInstance().addTexture(applicationContext.getResources().getAssetFilePath(R.textures.tiles_png));
         for (int i = 0; i < 21; i++) {
             texture.addTextureRegion(new Vector2Df(64 * i, 0), new Vector2Df(64, 64));
         }
@@ -94,21 +101,15 @@ public class Main implements MainWindow.OnWindowCloseListener {
         ActivityManager.getInstance().addActivity(new TestActivity());
         ActivityManager.getInstance().addActivity(new RecyclerViewActivity());
 
+        entityPrototypeFactory.loadEntities(applicationContext.getResources().getAssetFileAsString(R.entities.entityList_json));
         return true;
     }
 
     private void worldInit () {
 
-
+        entityHandler.addEntity(entityPrototypeFactory.cloneEntity("player"));
 
         Entity entity = entityHandler.createEntity();
-        entity.addComponent(new Position());
-        entity.addComponent(new Collision(new Vector2Df(25, 25)));
-        entity.addComponent(new Movement(new Vector2Df(100, 100)));
-        entity.addComponent(new BasicTexturedSquare(new Vector2Df(25, 25), 0, 0));
-        entity.addComponent(new KeyboardController());
-
-        entity = entityHandler.createEntity();
         entity.addComponent(new Position(45));
         entity.addComponent(new BasicTexturedSquare(new Vector2Df(100, 100), 0, 0));
         entity.addComponent(new Collision(new Vector2Df(100, 100)));
@@ -128,8 +129,9 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
         entity = entityHandler.createEntity();
         entity.addComponent(new Position());
-        entity.addComponent(new BasicColouredSquare(new Vector2Df(100, 100), new Vec3f(1f, 0f, 0f)));
-        entity.addComponent(new Collision(new Vector2Df(100, 100)));
+        entity.addComponent(new BasicColouredSquare(new Vector2Df(50, 50), new Vec3f(1f, 0f, 0f)));
+        entity.addComponent(new Collision(new Vector2Df(50, 50)));
+        entity.addComponent(new Select(new Vector2Df(60, 60), 0,0,false));
         entity.addComponent(new Movement(new Vector2Df(300, 300), //startPosition
                 new Vector2Df(0, 0), //startVelocity
                 new Vector2Df(0, 0) //acceleration
@@ -146,6 +148,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
         systemHandler.addSystem(new MapRenderSystem());
         systemHandler.addSystem(new RenderTextureSystem());
         systemHandler.addSystem(new RenderColourSystem());
+        systemHandler.addSystem(new MouseSelectSystem());
 
         systemHandler.init(entityHandler);
     }
@@ -204,7 +207,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
             MotionEvent motionEvent = Mouse.getInstance().getNextMotionEvent();
             while (motionEvent != null){
-               if(ActivityManager.getInstance().dispatchTouchEvent(motionEvent)){
+               if(!ActivityManager.getInstance().dispatchTouchEvent(motionEvent)){
                    systemHandler.dispatchTouchEvent(motionEvent);
                }
                 motionEvent = Mouse.getInstance().getNextMotionEvent();
