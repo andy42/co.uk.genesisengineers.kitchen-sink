@@ -86,12 +86,13 @@ public class Main implements MainWindow.OnWindowCloseListener {
         visualisation.setWindowDimensions(windowWidth, windowHeight);
 
         // load textures
-        //Texture texture = TextureManager.getInstance().addTexture("textures/test_texture.png");
-        Texture texture = TextureManager.getInstance().addTexture(applicationContext.getResources().getAssetFilePath(R.textures.test_texture_png));
+        Texture texture = TextureManager.getInstance().addTexture(
+                applicationContext.getResources().getAssetFilePath(R.textures.test_texture_png));
         texture.addTextureRegion(new Vector2Df(0, 0), new Vector2Df(9, 9));
 
         //texture = TextureManager.getInstance().addTexture("textures/tiles.png");
-        texture = TextureManager.getInstance().addTexture(applicationContext.getResources().getAssetFilePath(R.textures.tiles_png));
+        texture = TextureManager.getInstance().addTexture(
+                applicationContext.getResources().getAssetFilePath(R.textures.tiles_png));
         for (int i = 0; i < 21; i++) {
             texture.addTextureRegion(new Vector2Df(64 * i, 0), new Vector2Df(64, 64));
         }
@@ -101,7 +102,8 @@ public class Main implements MainWindow.OnWindowCloseListener {
         ActivityManager.getInstance().addActivity(new TestActivity());
         ActivityManager.getInstance().addActivity(new RecyclerViewActivity());
 
-        entityPrototypeFactory.loadEntities(applicationContext.getResources().getAssetFileAsString(R.entities.entityList_json));
+        entityPrototypeFactory.loadEntities(
+                applicationContext.getResources().getAssetFileAsString(R.entities.entityList_json));
         return true;
     }
 

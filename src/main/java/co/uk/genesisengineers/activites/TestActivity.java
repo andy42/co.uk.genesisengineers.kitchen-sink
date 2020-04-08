@@ -25,7 +25,7 @@ public class TestActivity extends Activity implements View.OnClickListener{
 
         this.getResources();
 
-        this.button = (Button) this.view.findViewById("button2");
+        this.button = (Button) this.view.findViewById(R.id.button2);
         this.button.setOnClickListener(this);
     }
 
