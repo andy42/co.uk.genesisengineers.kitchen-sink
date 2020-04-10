@@ -2,13 +2,13 @@ package co.uk.genesisengineers;
 
 import clock.ClockHandler;
 import co.uk.genesisengineers.activites.TestActivity;
+import co.uk.genesisengineers.kitchenSink.recyclerViewTest.RecyclerViewActivity;
 import com.sun.javafx.geom.Vec3f;
 import content.entityPrototypeFactory.EntityPrototypeFactory;
 import content.entityPrototypeFactory.json.EntityPrototypeFactoryJSON;
-import drawable.DrawableColor;
 import drawable.DrawableManager;
-import drawable.shape.ShapeManager;
 import entity.Entity;
+import shape.ShapeManager;
 import entity.EntityHandler;
 import entity.component.types.*;
 import input.KeyEvent;
@@ -27,7 +27,6 @@ import visualisation.TextureManager;
 import visualisation.Visualisation;
 
 import co.uk.genesisengineers.kitchenSink.R;
-import co.uk.genesisengineers.kitchenSink.recyclerViewTest.*;
 
 import java.io.File;
 import java.util.Date;
@@ -46,7 +45,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
     private ApplicationContext applicationContext;
 
     private ShapeManager shapeManager = new ShapeManager();
-    private DrawableManager drawableManager = new DrawableManager();
+    private DrawableManager drawableManager;
 
     private EntityPrototypeFactory entityPrototypeFactory = new EntityPrototypeFactoryJSON();
 
@@ -110,11 +109,12 @@ public class Main implements MainWindow.OnWindowCloseListener {
         shapeManager.loadShapes(applicationContext,
                 applicationContext.getResources().getAssetsOfType(R.shapes.TYPE));
 
-        //drawableManager.load(shapeManager);
-        drawableManager.addDrawable(0, new DrawableColor(new Vec3f(0,0,1), shapeManager.getShape(R.shapes.square_json)));
+        drawableManager = new DrawableManager(shapeManager);
+        drawableManager.load(applicationContext,
+                applicationContext.getResources().getAssetsOfType(R.drawables.TYPE));
 
-        //ActivityManager.getInstance().addActivity(new TestActivity());
-        //ActivityManager.getInstance().addActivity(new RecyclerViewActivity());
+        ActivityManager.getInstance().addActivity(new TestActivity());
+        ActivityManager.getInstance().addActivity(new RecyclerViewActivity());
 
         entityPrototypeFactory.loadEntities(
                 applicationContext.getResources().getAssetFileAsString(R.entities.entityList_json));
@@ -123,9 +123,8 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
     private void worldInit () {
 
-       // entityHandler.addEntity(entityPrototypeFactory.cloneEntity("player"));
+       entityHandler.addEntity(entityPrototypeFactory.cloneEntity("player"));
 
-        /*
         Entity entity = entityHandler.createEntity();
         entity.addComponent(new Position(45));
         entity.addComponent(new BasicTexturedSquare(new Vector2Df(100, 100), 0, 0));
@@ -153,11 +152,10 @@ public class Main implements MainWindow.OnWindowCloseListener {
                 new Vector2Df(0, 0), //startVelocity
                 new Vector2Df(0, 0) //acceleration
         ));
-        */
 
-//        entity = entityHandler.createEntity();
-//        entity.addComponent(new Position(20, 20));
-//        entity.addComponent(new MapSquare(new Vector2Df(8, 4), new Vector2Df(64, 64)));
+        entity = entityHandler.createEntity();
+        entity.addComponent(new Position(20, 20));
+        entity.addComponent(new MapSquare(new Vector2Df(8, 4), new Vector2Df(64, 64)));
 
 
         systemHandler.addSystem(new KeyboardControllerSystem());
@@ -242,7 +240,9 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
             systemHandler.update();
 
-            drawableManager.draw(0, new Vector2Df(100, 100), new Vector2Df(100, 100), 0);
+            drawableManager.draw(R.drawables.redSquare_json, new Vector2Df(100, 100), new Vector2Df(100, 100), 0);
+            drawableManager.draw(R.drawables.ringGreen_json, new Vector2Df(200, 100), new Vector2Df(100, 100), 0);
+            drawableManager.draw(R.drawables.blueCircle_json, new Vector2Df(300, 100), new Vector2Df(100, 100), 0);
             ActivityManager.getInstance().update();
             ActivityManager.getInstance().renderActivityList();
 

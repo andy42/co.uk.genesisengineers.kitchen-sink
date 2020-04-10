@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ScrollView xmlns:ge="http://www.w3.org/2001/XMLSchema-instance" ge:noNamespaceSchemaLocation="layout_schema.xsd" layout_width="WRAP_CONTENT" layout_height="250" orientation="vertical">
-  <LinearLayout id="38" background_color="#e2e2e2" layout_width="WRAP_CONTENT" layout_height="WRAP_CONTENT" gravity="top" orientation="vertical">
-    <View id="39" background_color="#00FF00" layout_width="50" layout_height="50" />
-    <EditText id="40" background_color="#efefef" background_focused_color="#ffffff" text="" hint_text="hint text" padding_top="10" padding_bottom="10" padding_left="10" padding_right="10" text_color="#000000" text_size="5" layout_gravity="left" layout_width="300" layout_height="35" />
-    <EditText id="41" background_color="#efefef" background_focused_color="#ffffff" text="" hint_text="hint text" padding_top="10" padding_bottom="10" padding_left="10" padding_right="10" text_color="#000000" text_size="5" layout_gravity="left" layout_width="300" layout_height="35" />
-    <EditText id="42" background_color="#efefef" background_focused_color="#ffffff" text="" hint_text="hint text" padding_top="10" padding_bottom="10" padding_left="10" padding_right="10" text_color="#000000" text_size="5" layout_gravity="left" layout_width="300" layout_height="35" />
-    <Button id="43" background_color="#FFFFFF" text="Button" text_color="#000000" layout_width="WRAP_CONTENT" layout_height="WRAP_CONTENT" />
+  <LinearLayout id="45" background_color="#e2e2e2" layout_width="WRAP_CONTENT" layout_height="WRAP_CONTENT" gravity="top" orientation="vertical">
+    <View id="46" background_color="#00FF00" layout_width="50" layout_height="50" />
+    <EditText id="47" background_color="#efefef" background_focused_color="#ffffff" text="" hint_text="hint text" padding_top="10" padding_bottom="10" padding_left="10" padding_right="10" text_color="#000000" text_size="5" layout_gravity="left" layout_width="300" layout_height="35" />
+    <EditText id="48" background_color="#efefef" background_focused_color="#ffffff" text="" hint_text="hint text" padding_top="10" padding_bottom="10" padding_left="10" padding_right="10" text_color="#000000" text_size="5" layout_gravity="left" layout_width="300" layout_height="35" />
+    <EditText id="49" background_color="#efefef" background_focused_color="#ffffff" text="" hint_text="hint text" padding_top="10" padding_bottom="10" padding_left="10" padding_right="10" text_color="#000000" text_size="5" layout_gravity="left" layout_width="300" layout_height="35" />
+    <Button id="50" background_color="#FFFFFF" text="Button" text_color="#000000" layout_width="WRAP_CONTENT" layout_height="WRAP_CONTENT" />
     <EditText background_color="#FFFFFF" text="hello world 33" text_color="#ff0000" text_size="8" layout_gravity="right" layout_width="WRAP_CONTENT" layout_height="WRAP_CONTENT" />
     <LinearLayout layout_width="WRAP_CONTENT" layout_height="100" orientation="horizontal">
-      <View id="44" background_color="#00FF00" layout_width="50" layout_height="50" />
-      <View id="45" background_color="#0000FF" layout_width="70" layout_height="70" />
-      <View id="46" background_color="#FF00FF" layout_width="50" layout_height="50" />
-      <Button id="47" background_color="#FFFFFF" text="Button" text_color="#000000" layout_width="WRAP_CONTENT" layout_height="WRAP_CONTENT" />
+      <View id="51" background_color="#00FF00" layout_width="50" layout_height="50" />
+      <View id="52" background_color="#0000FF" layout_width="70" layout_height="70" />
+      <View id="53" background_color="#FF00FF" layout_width="50" layout_height="50" />
+      <Button id="54" background_color="#FFFFFF" text="Button" text_color="#000000" layout_width="WRAP_CONTENT" layout_height="WRAP_CONTENT" />
     </LinearLayout>
-    <View id="48" background_color="#00FFFF" layout_width="50" layout_height="50" background_pressed_color="#00ff00" />
-    <View id="49" background_color="#00FF00" layout_width="70" layout_height="70" clickable="true" />
+    <View id="55" background_color="#00FFFF" layout_width="50" layout_height="50" background_pressed_color="#00ff00" />
+    <View id="56" background_color="#00FF00" layout_width="70" layout_height="70" clickable="true" />
   </LinearLayout>
 </ScrollView>
