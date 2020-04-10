@@ -68,62 +68,68 @@
          "type" : "layouts"
       },
       {
-         "name" : "list_layout_xml",
+         "name" : "layout_schema_xsd",
          "id" : 11,
+         "filePath" : "layouts/layout_schema.xsd",
+         "type" : "layouts"
+      },
+      {
+         "name" : "list_layout_xml",
+         "id" : 12,
          "filePath" : "layouts/list_layout.xml",
          "type" : "layouts"
       },
       {
          "name" : "coloured_frag",
-         "id" : 12,
+         "id" : 13,
          "filePath" : "shaders/coloured.frag",
          "type" : "shaders"
       },
       {
          "name" : "coloured_vert",
-         "id" : 13,
+         "id" : 14,
          "filePath" : "shaders/coloured.vert",
          "type" : "shaders"
       },
       {
          "name" : "font_frag",
-         "id" : 14,
+         "id" : 15,
          "filePath" : "shaders/font.frag",
          "type" : "shaders"
       },
       {
          "name" : "font_vert",
-         "id" : 15,
+         "id" : 16,
          "filePath" : "shaders/font.vert",
          "type" : "shaders"
       },
       {
          "name" : "textured_frag",
-         "id" : 16,
+         "id" : 17,
          "filePath" : "shaders/textured.frag",
          "type" : "shaders"
       },
       {
          "name" : "textured_vert",
-         "id" : 17,
+         "id" : 18,
          "filePath" : "shaders/textured.vert",
          "type" : "shaders"
       },
       {
          "name" : "test_texture_png",
-         "id" : 18,
+         "id" : 19,
          "filePath" : "test/test_texture.png",
          "type" : "test"
       },
       {
          "name" : "test_texture_png",
-         "id" : 19,
+         "id" : 20,
          "filePath" : "textures/test_texture.png",
          "type" : "textures"
       },
       {
          "name" : "tiles_png",
-         "id" : 20,
+         "id" : 21,
          "filePath" : "textures/tiles.png",
          "type" : "textures"
       }

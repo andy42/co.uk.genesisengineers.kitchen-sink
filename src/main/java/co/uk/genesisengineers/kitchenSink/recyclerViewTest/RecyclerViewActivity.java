@@ -33,11 +33,6 @@ public class RecyclerViewActivity  extends Activity implements RecyclerView.OnIt
     }
 
     @Override
-    public void render () {
-        super.render();
-    }
-
-    @Override
     public void onItemClick (int index, View view) {
         Logger.info("onItemClick index = "+index);
     }

@@ -35,9 +35,10 @@ public class RecyclerViewActivityAdapter extends RecyclerView.Adapter {
 
         public ViewHolder(View view){
             super(view);
-            titleTextView = (TextView)view.findViewById("title");
-            valueTextView = (TextView)view.findViewById("value");
+            titleTextView = (TextView)view.findViewById(R.id.title);
+            valueTextView = (TextView)view.findViewById(R.id.value);
         }
+
         public void bind(int position){
             titleTextView.setText("title : "+position);
             valueTextView.setText("");
