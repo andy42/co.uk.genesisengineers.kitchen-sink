@@ -3,135 +3,164 @@
 
       {
          "name" : "entityList_json",
-         "id" : 0,
+         "id" : 1,
          "filePath" : "entities/entityList.json",
-         "type" : "entities"
+         "fileType" : "json",
+         "type" : "0"
       },
       {
          "name" : "default_json",
-         "id" : 1,
+         "id" : 3,
          "filePath" : "environmentVariables/default.json",
-         "type" : "environmentVariables"
+         "fileType" : "json",
+         "type" : "2"
       },
       {
          "name" : "arial_fnt",
-         "id" : 2,
+         "id" : 5,
          "filePath" : "fonts/arial.fnt",
-         "type" : "fonts"
+         "fileType" : "fnt",
+         "type" : "4"
       },
       {
          "name" : "arial_png",
-         "id" : 3,
+         "id" : 6,
          "filePath" : "fonts/arial.png",
-         "type" : "fonts"
+         "fileType" : "png",
+         "type" : "4"
       },
       {
          "name" : "arial_ttf",
-         "id" : 4,
+         "id" : 7,
          "filePath" : "fonts/arial.ttf",
-         "type" : "fonts"
+         "fileType" : "ttf",
+         "type" : "4"
       },
       {
          "name" : "harrington_fnt",
-         "id" : 5,
+         "id" : 8,
          "filePath" : "fonts/harrington.fnt",
-         "type" : "fonts"
+         "fileType" : "fnt",
+         "type" : "4"
       },
       {
          "name" : "harrington_png",
-         "id" : 6,
+         "id" : 9,
          "filePath" : "fonts/harrington.png",
-         "type" : "fonts"
+         "fileType" : "png",
+         "type" : "4"
       },
       {
          "name" : "activity_entity_inspector_xml",
-         "id" : 7,
+         "id" : 11,
          "filePath" : "layouts/activity_entity_inspector.xml",
-         "type" : "layouts"
+         "fileType" : "xml",
+         "type" : "10"
       },
       {
          "name" : "activity_tileset_editor_xml",
-         "id" : 8,
+         "id" : 12,
          "filePath" : "layouts/activity_tileset_editor.xml",
-         "type" : "layouts"
+         "fileType" : "xml",
+         "type" : "10"
       },
       {
          "name" : "basic_layout_xml",
-         "id" : 9,
+         "id" : 13,
          "filePath" : "layouts/basic_layout.xml",
-         "type" : "layouts"
+         "fileType" : "xml",
+         "type" : "10"
       },
       {
          "name" : "item_view_xml",
-         "id" : 10,
+         "id" : 14,
          "filePath" : "layouts/item_view.xml",
-         "type" : "layouts"
+         "fileType" : "xml",
+         "type" : "10"
       },
       {
          "name" : "layout_schema_xsd",
-         "id" : 11,
+         "id" : 15,
          "filePath" : "layouts/layout_schema.xsd",
-         "type" : "layouts"
+         "fileType" : "xsd",
+         "type" : "10"
       },
       {
          "name" : "list_layout_xml",
-         "id" : 12,
+         "id" : 16,
          "filePath" : "layouts/list_layout.xml",
-         "type" : "layouts"
+         "fileType" : "xml",
+         "type" : "10"
       },
       {
          "name" : "coloured_frag",
-         "id" : 13,
+         "id" : 18,
          "filePath" : "shaders/coloured.frag",
-         "type" : "shaders"
+         "fileType" : "frag",
+         "type" : "17"
       },
       {
          "name" : "coloured_vert",
-         "id" : 14,
+         "id" : 19,
          "filePath" : "shaders/coloured.vert",
-         "type" : "shaders"
+         "fileType" : "vert",
+         "type" : "17"
       },
       {
          "name" : "font_frag",
-         "id" : 15,
+         "id" : 20,
          "filePath" : "shaders/font.frag",
-         "type" : "shaders"
+         "fileType" : "frag",
+         "type" : "17"
       },
       {
          "name" : "font_vert",
-         "id" : 16,
+         "id" : 21,
          "filePath" : "shaders/font.vert",
-         "type" : "shaders"
+         "fileType" : "vert",
+         "type" : "17"
       },
       {
          "name" : "textured_frag",
-         "id" : 17,
+         "id" : 22,
          "filePath" : "shaders/textured.frag",
-         "type" : "shaders"
+         "fileType" : "frag",
+         "type" : "17"
       },
       {
          "name" : "textured_vert",
-         "id" : 18,
+         "id" : 23,
          "filePath" : "shaders/textured.vert",
-         "type" : "shaders"
+         "fileType" : "vert",
+         "type" : "17"
+      },
+      {
+         "name" : "square_json",
+         "id" : 25,
+         "filePath" : "shapes/square.json",
+         "fileType" : "json",
+         "type" : "24"
       },
       {
          "name" : "test_texture_png",
-         "id" : 19,
+         "id" : 27,
          "filePath" : "test/test_texture.png",
-         "type" : "test"
+         "fileType" : "png",
+         "type" : "26"
       },
       {
          "name" : "test_texture_png",
-         "id" : 20,
+         "id" : 29,
          "filePath" : "textures/test_texture.png",
-         "type" : "textures"
+         "fileType" : "png",
+         "type" : "28"
       },
       {
          "name" : "tiles_png",
-         "id" : 21,
+         "id" : 30,
          "filePath" : "textures/tiles.png",
-         "type" : "textures"
+         "fileType" : "png",
+         "type" : "28"
       }
   ]
 }

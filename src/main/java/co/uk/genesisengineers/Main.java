@@ -5,6 +5,9 @@ import co.uk.genesisengineers.activites.TestActivity;
 import com.sun.javafx.geom.Vec3f;
 import content.entityPrototypeFactory.EntityPrototypeFactory;
 import content.entityPrototypeFactory.json.EntityPrototypeFactoryJSON;
+import drawable.DrawableColor;
+import drawable.DrawableManager;
+import drawable.shape.ShapeManager;
 import entity.Entity;
 import entity.EntityHandler;
 import entity.component.types.*;
@@ -41,6 +44,9 @@ public class Main implements MainWindow.OnWindowCloseListener {
     private EntityHandler entityHandler = new EntityHandler();
     private ActivityManager activityManager;
     private ApplicationContext applicationContext;
+
+    private ShapeManager shapeManager = new ShapeManager();
+    private DrawableManager drawableManager = new DrawableManager();
 
     private EntityPrototypeFactory entityPrototypeFactory = new EntityPrototypeFactoryJSON();
 
@@ -99,8 +105,16 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
         Visualisation.getInstance().loadFonts();
 
-        ActivityManager.getInstance().addActivity(new TestActivity());
-        ActivityManager.getInstance().addActivity(new RecyclerViewActivity());
+
+
+        shapeManager.loadShapes(applicationContext,
+                applicationContext.getResources().getAssetsOfType(R.shapes.TYPE));
+
+        //drawableManager.load(shapeManager);
+        drawableManager.addDrawable(0, new DrawableColor(new Vec3f(0,0,1), shapeManager.getShape(R.shapes.square_json)));
+
+        //ActivityManager.getInstance().addActivity(new TestActivity());
+        //ActivityManager.getInstance().addActivity(new RecyclerViewActivity());
 
         entityPrototypeFactory.loadEntities(
                 applicationContext.getResources().getAssetFileAsString(R.entities.entityList_json));
@@ -109,8 +123,9 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
     private void worldInit () {
 
-        entityHandler.addEntity(entityPrototypeFactory.cloneEntity("player"));
+       // entityHandler.addEntity(entityPrototypeFactory.cloneEntity("player"));
 
+        /*
         Entity entity = entityHandler.createEntity();
         entity.addComponent(new Position(45));
         entity.addComponent(new BasicTexturedSquare(new Vector2Df(100, 100), 0, 0));
@@ -138,10 +153,11 @@ public class Main implements MainWindow.OnWindowCloseListener {
                 new Vector2Df(0, 0), //startVelocity
                 new Vector2Df(0, 0) //acceleration
         ));
+        */
 
-        entity = entityHandler.createEntity();
-        entity.addComponent(new Position(20, 20));
-        entity.addComponent(new MapSquare(new Vector2Df(8, 4), new Vector2Df(64, 64)));
+//        entity = entityHandler.createEntity();
+//        entity.addComponent(new Position(20, 20));
+//        entity.addComponent(new MapSquare(new Vector2Df(8, 4), new Vector2Df(64, 64)));
 
 
         systemHandler.addSystem(new KeyboardControllerSystem());
@@ -225,6 +241,8 @@ public class Main implements MainWindow.OnWindowCloseListener {
             }
 
             systemHandler.update();
+
+            drawableManager.draw(0, new Vector2Df(100, 100), new Vector2Df(100, 100), 0);
             ActivityManager.getInstance().update();
             ActivityManager.getInstance().renderActivityList();
 
