@@ -90,28 +90,29 @@ public class Main implements MainWindow.OnWindowCloseListener {
         visualisation.init(mainWindow.getWindow());
         visualisation.setWindowDimensions(windowWidth, windowHeight);
 
-        // load textures
-        Texture texture = TextureManager.getInstance().addTexture(
-                applicationContext.getResources().getAssetFilePath(R.textures.test_texture_png));
-        texture.addTextureRegion(new Vector2Df(0, 0), new Vector2Df(9, 9));
+        TextureManager.getInstance().load(
+                applicationContext,
+                applicationContext.getResources().getAssetsOfType(R.textures.TYPE)
+        );
 
-        //texture = TextureManager.getInstance().addTexture("textures/tiles.png");
-        texture = TextureManager.getInstance().addTexture(
-                applicationContext.getResources().getAssetFilePath(R.textures.tiles_png));
-        for (int i = 0; i < 21; i++) {
-            texture.addTextureRegion(new Vector2Df(64 * i, 0), new Vector2Df(64, 64));
-        }
+        //TODO: make this dynamic loading for all fonts
+        Visualisation.getInstance().loadFont(applicationContext, R.fonts.arial_png, R.fonts.arial_fnt);
 
-        Visualisation.getInstance().loadFonts();
+        applicationContext.getResources().loadColors(applicationContext, R.values.colors_json);
 
-
+        String value = applicationContext.getResources().getColor(R.color.red).hexValue;
 
         shapeManager.loadShapes(applicationContext,
                 applicationContext.getResources().getAssetsOfType(R.shapes.TYPE));
 
-        drawableManager = new DrawableManager(shapeManager);
-        drawableManager.load(applicationContext,
+        drawableManager = new DrawableManager(shapeManager, TextureManager.getInstance());
+        drawableManager.load(
+                applicationContext,
                 applicationContext.getResources().getAssetsOfType(R.drawables.TYPE));
+
+        drawableManager.createColorDrawables(
+                applicationContext.getResources().getColorList(),
+                shapeManager.getShape(R.shapes.square_json));
 
         ActivityManager.getInstance().addActivity(new TestActivity());
         ActivityManager.getInstance().addActivity(new RecyclerViewActivity());
@@ -125,9 +126,11 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
        entityHandler.addEntity(entityPrototypeFactory.cloneEntity("player"));
 
-        Entity entity = entityHandler.createEntity();
+        Entity entity;
+
+        entity = entityHandler.createEntity();
         entity.addComponent(new Position(45));
-        entity.addComponent(new BasicTexturedSquare(new Vector2Df(100, 100), 0, 0));
+        entity.addComponent(new BasicDrawable(new Vector2Df(100, 100), R.drawables.text_json, 45));
         entity.addComponent(new Collision(new Vector2Df(100, 100)));
         entity.addComponent(new Movement(new Vector2Df(100, 300), //startPosition
                 new Vector2Df(0, 0), //startVelocity
@@ -136,7 +139,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
         entity = entityHandler.createEntity();
         entity.addComponent(new Position());
-        entity.addComponent(new BasicColouredSquare(new Vector2Df(100, 100), new Vec3f(0f, 1f, 0f)));
+        entity.addComponent(new BasicDrawable(new Vector2Df(100, 100), R.drawables.redSquare_json, 0));
         entity.addComponent(new Collision(new Vector2Df(100, 100)));
         entity.addComponent(new Movement(new Vector2Df(200, 300), //startPosition
                 new Vector2Df(0, 0), //startVelocity
@@ -145,7 +148,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
         entity = entityHandler.createEntity();
         entity.addComponent(new Position());
-        entity.addComponent(new BasicColouredSquare(new Vector2Df(50, 50), new Vec3f(1f, 0f, 0f)));
+        entity.addComponent(new BasicDrawable(new Vector2Df(100, 100), R.drawables.greenCircle_json, 45));
         entity.addComponent(new Collision(new Vector2Df(50, 50)));
         entity.addComponent(new Select(new Vector2Df(60, 60), 0,0,false));
         entity.addComponent(new Movement(new Vector2Df(300, 300), //startPosition
@@ -153,9 +156,9 @@ public class Main implements MainWindow.OnWindowCloseListener {
                 new Vector2Df(0, 0) //acceleration
         ));
 
-        entity = entityHandler.createEntity();
-        entity.addComponent(new Position(20, 20));
-        entity.addComponent(new MapSquare(new Vector2Df(8, 4), new Vector2Df(64, 64)));
+//        entity = entityHandler.createEntity();
+//        entity.addComponent(new Position(20, 20));
+//        entity.addComponent(new MapSquare(new Vector2Df(8, 4), new Vector2Df(64, 64)));
 
 
         systemHandler.addSystem(new KeyboardControllerSystem());
@@ -164,6 +167,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
         systemHandler.addSystem(new MapRenderSystem());
         systemHandler.addSystem(new RenderTextureSystem());
         systemHandler.addSystem(new RenderColourSystem());
+        systemHandler.addSystem(new RenderDrawableSystem(drawableManager));
         systemHandler.addSystem(new MouseSelectSystem());
 
         systemHandler.init(entityHandler);
