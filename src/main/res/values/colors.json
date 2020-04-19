@@ -1,7 +1,9 @@
 [
   {"type":"color", "id":"white", "value":"#ffffff"},
   {"type":"color", "id":"black", "value":"#000000"},
+  {"type":"color", "id":"light_grey", "value":"#efefef"},
   {"type":"color", "id":"red", "value":"#ff0000"},
   {"type":"color", "id":"green", "value":"#00ff00"},
-  {"type":"color", "id":"blue", "value":"#0000ff"}
+  {"type":"color", "id":"blue", "value":"#0000ff"},
+  {"type":"color", "id":"purple", "value":"#a04ca6"}
 ]

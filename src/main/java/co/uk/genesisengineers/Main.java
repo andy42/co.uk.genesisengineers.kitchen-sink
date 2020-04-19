@@ -3,11 +3,12 @@ package co.uk.genesisengineers;
 import clock.ClockHandler;
 import co.uk.genesisengineers.activites.TestActivity;
 import co.uk.genesisengineers.kitchenSink.recyclerViewTest.RecyclerViewActivity;
-import com.sun.javafx.geom.Vec3f;
 import content.entityPrototypeFactory.EntityPrototypeFactory;
 import content.entityPrototypeFactory.json.EntityPrototypeFactoryJSON;
 import drawable.DrawableManager;
 import entity.Entity;
+import org.lwjgl.PointerBuffer;
+import org.lwjgl.util.nfd.NativeFileDialog;
 import shape.ShapeManager;
 import entity.EntityHandler;
 import entity.component.types.*;
@@ -22,7 +23,6 @@ import util.FileLoader;
 import util.Logger;
 import util.Vector2Df;
 import visualisation.MainWindow;
-import visualisation.Texture;
 import visualisation.TextureManager;
 import visualisation.Visualisation;
 
@@ -36,6 +36,8 @@ import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.system.MemoryUtil.*;
+import static org.lwjgl.util.nfd.NativeFileDialog.*;
 
 public class Main implements MainWindow.OnWindowCloseListener {
     private MainWindow mainWindow;
@@ -100,19 +102,17 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
         applicationContext.getResources().loadColors(applicationContext, R.values.colors_json);
 
-        String value = applicationContext.getResources().getColor(R.color.red).hexValue;
-
         shapeManager.loadShapes(applicationContext,
                 applicationContext.getResources().getAssetsOfType(R.shapes.TYPE));
 
-        drawableManager = new DrawableManager(shapeManager, TextureManager.getInstance());
+        drawableManager =  DrawableManager.createInstance(shapeManager, TextureManager.getInstance());
         drawableManager.load(
                 applicationContext,
                 applicationContext.getResources().getAssetsOfType(R.drawables.TYPE));
 
         drawableManager.createColorDrawables(
                 applicationContext.getResources().getColorList(),
-                shapeManager.getShape(R.shapes.square_json));
+                shapeManager.getShape(R.shapes.square_top_left_json));
 
         ActivityManager.getInstance().addActivity(new TestActivity());
         ActivityManager.getInstance().addActivity(new RecyclerViewActivity());
@@ -156,9 +156,9 @@ public class Main implements MainWindow.OnWindowCloseListener {
                 new Vector2Df(0, 0) //acceleration
         ));
 
-//        entity = entityHandler.createEntity();
-//        entity.addComponent(new Position(20, 20));
-//        entity.addComponent(new MapSquare(new Vector2Df(8, 4), new Vector2Df(64, 64)));
+        entity = entityHandler.createEntity();
+        entity.addComponent(new Position(20, 20));
+        entity.addComponent(new MapSquare(R.drawables.tiles_json, new Vector2Df(8, 4), new Vector2Df(64, 64)));
 
 
         systemHandler.addSystem(new KeyboardControllerSystem());
@@ -196,6 +196,35 @@ public class Main implements MainWindow.OnWindowCloseListener {
             Thread.sleep(time);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void checkResult(int result, PointerBuffer path) {
+        switch (result) {
+            case NFD_OKAY:
+                System.out.println("Success!");
+                System.out.println(path.getStringUTF8(0));
+                //memFree(path);
+                nNFDi_Free(path.get(0));
+                break;
+            case NFD_CANCEL:
+                System.out.println("User pressed cancel.");
+                break;
+            default: // NFD_ERROR
+                System.err.format("Error: %s\n", NativeFileDialog.NFD_GetError());
+        }
+    }
+
+
+    private static void openSingle() {
+        PointerBuffer outPath = memAllocPointer(1);
+        try {
+            checkResult(
+                    NFD_OpenDialog("png,jpg;pdf", null, outPath),
+                    outPath
+            );
+        } finally {
+            memFree(outPath);
         }
     }
 

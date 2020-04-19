@@ -2,6 +2,6 @@
 <RecyclerView xmlns:ge="http://www.w3.org/2001/XMLSchema-instance"
               ge:noNamespaceSchemaLocation="layout_schema.xsd"
         id="recyclerView"
-        background_color="#eaffea"
+        background="@color/red"
         layout_width="200"
         layout_height="300"/>

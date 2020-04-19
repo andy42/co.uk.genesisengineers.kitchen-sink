@@ -156,32 +156,39 @@
          "type" : "31"
       },
       {
-         "name" : "test_texture_png",
-         "id" : 36,
-         "filePath" : "test/test_texture.png",
-         "fileType" : "png",
-         "type" : "35"
+         "name" : "square_top_left_json",
+         "id" : 35,
+         "filePath" : "shapes/square_top_left.json",
+         "fileType" : "json",
+         "type" : "31"
       },
       {
          "name" : "test_texture_png",
-         "id" : 38,
+         "id" : 37,
+         "filePath" : "test/test_texture.png",
+         "fileType" : "png",
+         "type" : "36"
+      },
+      {
+         "name" : "test_texture_png",
+         "id" : 39,
          "filePath" : "textures/test_texture.png",
          "fileType" : "png",
-         "type" : "37"
+         "type" : "38"
       },
       {
          "name" : "tiles_png",
-         "id" : 39,
+         "id" : 40,
          "filePath" : "textures/tiles.png",
          "fileType" : "png",
-         "type" : "37"
+         "type" : "38"
       },
       {
          "name" : "colors_json",
-         "id" : 41,
+         "id" : 42,
          "filePath" : "values/colors.json",
          "fileType" : "json",
-         "type" : "40"
+         "type" : "41"
       },
       {
          "name" : "activity_entity_inspector_xml",

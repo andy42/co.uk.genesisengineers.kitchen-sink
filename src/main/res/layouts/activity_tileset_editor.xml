@@ -5,14 +5,14 @@
         layout_height="250"
         orientation="vertical">
     <LinearLayout id="fistView"
-                  background_color="#e2e2e2"
+                  background="@color/red"
                   layout_width="WRAP_CONTENT"
                   layout_height="WRAP_CONTENT"
                   gravity="top"
                   orientation="vertical">
         <EditText id="fileNameEditText"
-                  background_color="#efefef"
-                  background_focused_color="#ffffff"
+                  background="@color/red"
+                  background_focused="@color/red"
                   text=""
                   hint_text="hint text"
                   padding_top="10"
@@ -26,8 +26,8 @@
                   layout_height="35"/>
 
         <EditText id="fileNameEditText"
-                  background_color="#efefef"
-                  background_focused_color="#ffffff"
+                  background="@color/red"
+                  background_focused="@color/red"
                   text=""
                   hint_text="imageWidth"
                   padding_top="10"
