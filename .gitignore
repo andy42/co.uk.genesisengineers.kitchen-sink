@@ -4,9 +4,11 @@
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
+/.idea/uiDesigner.xml
 .DS_Store
 /out
 /captures
 .externalNativeBuild
 /co.uk.genesisengineers.core
 /src/main/resources
+/build
