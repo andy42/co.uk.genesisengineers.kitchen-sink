@@ -1,6 +1,7 @@
 package co.uk.genesisengineers.entityComponent.factory;
 
 import co.uk.genesisengineers.entityComponent.*;
+import content.Context;
 import content.entityPrototypeFactory.ComponentAttributes;
 import entity.component.ComponentBase;
 import util.Logger;
@@ -14,6 +15,11 @@ public class ComponentFactory {
     private static final HashMap<String, Constructor<? extends ComponentBase>> sConstructorMap = new HashMap<String, Constructor<? extends ComponentBase>>();
     private static final Class<?>[] mConstructorSignature = new Class[]{ComponentAttributes.class};
     private final Object[] mConstructorArgs = new Object[1];
+    private Context context;
+
+    public ComponentFactory(Context context){
+        this.context = context;
+    }
 
     private boolean verifyClassLoader (Constructor<? extends ComponentBase> constructor) {
         final ClassLoader constructorLoader = constructor.getDeclaringClass().getClassLoader();
@@ -58,10 +64,8 @@ public class ComponentFactory {
 
     public ComponentBase createComponent(String componentType, ComponentAttributes attrs) {
         switch (componentType){
-            case "BasicColouredSquare":
-                return new BasicColouredSquare(attrs);
-            case "BasicTexturedSquare":
-                return new BasicTexturedSquare(attrs);
+            case "BasicDrawable":
+                return new BasicDrawable(context, attrs);
             case "Collision":
                 return new Collision(attrs);
             case "KeyboardController":

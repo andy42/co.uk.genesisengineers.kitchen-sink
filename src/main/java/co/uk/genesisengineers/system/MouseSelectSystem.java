@@ -4,7 +4,6 @@ import com.sun.javafx.geom.Vec3f;
 import entity.Entity;
 import entity.EntityHandler;
 import entity.component.ComponentBase;
-import co.uk.genesisengineers.entityComponent.BasicColouredSquare;
 import co.uk.genesisengineers.entityComponent.Collision;
 import co.uk.genesisengineers.entityComponent.Position;
 import co.uk.genesisengineers.entityComponent.Select;
@@ -37,7 +36,6 @@ public class MouseSelectSystem extends SystemBase implements MotionEventListener
         visualisation.useColourProgram();
 
         Position position = null;
-        BasicColouredSquare basicSquare = null;
         Select select = null;
 
         for (Entity entity : entityList) {

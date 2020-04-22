@@ -4,6 +4,7 @@
       {
          "name" : "blueCircle_json",
          "id" : 1,
+         "assetId" : "@drawables/blueCircle_json",
          "filePath" : "drawables/blueCircle.json",
          "fileType" : "json",
          "type" : "0"
@@ -11,6 +12,7 @@
       {
          "name" : "greenCircle_json",
          "id" : 2,
+         "assetId" : "@drawables/greenCircle_json",
          "filePath" : "drawables/greenCircle.json",
          "fileType" : "json",
          "type" : "0"
@@ -18,6 +20,7 @@
       {
          "name" : "redSquare_json",
          "id" : 3,
+         "assetId" : "@drawables/redSquare_json",
          "filePath" : "drawables/redSquare.json",
          "fileType" : "json",
          "type" : "0"
@@ -25,6 +28,7 @@
       {
          "name" : "ringGreen_json",
          "id" : 4,
+         "assetId" : "@drawables/ringGreen_json",
          "filePath" : "drawables/ringGreen.json",
          "fileType" : "json",
          "type" : "0"
@@ -32,6 +36,7 @@
       {
          "name" : "text_json",
          "id" : 5,
+         "assetId" : "@drawables/text_json",
          "filePath" : "drawables/text.json",
          "fileType" : "json",
          "type" : "0"
@@ -39,6 +44,7 @@
       {
          "name" : "tiles_json",
          "id" : 6,
+         "assetId" : "@drawables/tiles_json",
          "filePath" : "drawables/tiles.json",
          "fileType" : "json",
          "type" : "0"
@@ -46,6 +52,7 @@
       {
          "name" : "entityList_json",
          "id" : 8,
+         "assetId" : "@entities/entityList_json",
          "filePath" : "entities/entityList.json",
          "fileType" : "json",
          "type" : "7"
@@ -53,6 +60,7 @@
       {
          "name" : "default_json",
          "id" : 10,
+         "assetId" : "@environmentVariables/default_json",
          "filePath" : "environmentVariables/default.json",
          "fileType" : "json",
          "type" : "9"
@@ -60,6 +68,7 @@
       {
          "name" : "arial_fnt",
          "id" : 12,
+         "assetId" : "@fonts/arial_fnt",
          "filePath" : "fonts/arial.fnt",
          "fileType" : "fnt",
          "type" : "11"
@@ -67,6 +76,7 @@
       {
          "name" : "arial_png",
          "id" : 13,
+         "assetId" : "@fonts/arial_png",
          "filePath" : "fonts/arial.png",
          "fileType" : "png",
          "type" : "11"
@@ -74,6 +84,7 @@
       {
          "name" : "arial_ttf",
          "id" : 14,
+         "assetId" : "@fonts/arial_ttf",
          "filePath" : "fonts/arial.ttf",
          "fileType" : "ttf",
          "type" : "11"
@@ -81,6 +92,7 @@
       {
          "name" : "harrington_fnt",
          "id" : 15,
+         "assetId" : "@fonts/harrington_fnt",
          "filePath" : "fonts/harrington.fnt",
          "fileType" : "fnt",
          "type" : "11"
@@ -88,6 +100,7 @@
       {
          "name" : "harrington_png",
          "id" : 16,
+         "assetId" : "@fonts/harrington_png",
          "filePath" : "fonts/harrington.png",
          "fileType" : "png",
          "type" : "11"
@@ -95,6 +108,7 @@
       {
          "name" : "coloured_frag",
          "id" : 25,
+         "assetId" : "@shaders/coloured_frag",
          "filePath" : "shaders/coloured.frag",
          "fileType" : "frag",
          "type" : "24"
@@ -102,6 +116,7 @@
       {
          "name" : "coloured_vert",
          "id" : 26,
+         "assetId" : "@shaders/coloured_vert",
          "filePath" : "shaders/coloured.vert",
          "fileType" : "vert",
          "type" : "24"
@@ -109,6 +124,7 @@
       {
          "name" : "font_frag",
          "id" : 27,
+         "assetId" : "@shaders/font_frag",
          "filePath" : "shaders/font.frag",
          "fileType" : "frag",
          "type" : "24"
@@ -116,6 +132,7 @@
       {
          "name" : "font_vert",
          "id" : 28,
+         "assetId" : "@shaders/font_vert",
          "filePath" : "shaders/font.vert",
          "fileType" : "vert",
          "type" : "24"
@@ -123,6 +140,7 @@
       {
          "name" : "textured_frag",
          "id" : 29,
+         "assetId" : "@shaders/textured_frag",
          "filePath" : "shaders/textured.frag",
          "fileType" : "frag",
          "type" : "24"
@@ -130,6 +148,7 @@
       {
          "name" : "textured_vert",
          "id" : 30,
+         "assetId" : "@shaders/textured_vert",
          "filePath" : "shaders/textured.vert",
          "fileType" : "vert",
          "type" : "24"
@@ -137,6 +156,7 @@
       {
          "name" : "circle10_json",
          "id" : 32,
+         "assetId" : "@shapes/circle10_json",
          "filePath" : "shapes/circle10.json",
          "fileType" : "json",
          "type" : "31"
@@ -144,6 +164,7 @@
       {
          "name" : "ring_json",
          "id" : 33,
+         "assetId" : "@shapes/ring_json",
          "filePath" : "shapes/ring.json",
          "fileType" : "json",
          "type" : "31"
@@ -151,6 +172,7 @@
       {
          "name" : "square_json",
          "id" : 34,
+         "assetId" : "@shapes/square_json",
          "filePath" : "shapes/square.json",
          "fileType" : "json",
          "type" : "31"
@@ -158,6 +180,7 @@
       {
          "name" : "square_top_left_json",
          "id" : 35,
+         "assetId" : "@shapes/square_top_left_json",
          "filePath" : "shapes/square_top_left.json",
          "fileType" : "json",
          "type" : "31"
@@ -165,6 +188,7 @@
       {
          "name" : "test_texture_png",
          "id" : 37,
+         "assetId" : "@test/test_texture_png",
          "filePath" : "test/test_texture.png",
          "fileType" : "png",
          "type" : "36"
@@ -172,6 +196,7 @@
       {
          "name" : "test_texture_png",
          "id" : 39,
+         "assetId" : "@textures/test_texture_png",
          "filePath" : "textures/test_texture.png",
          "fileType" : "png",
          "type" : "38"
@@ -179,6 +204,7 @@
       {
          "name" : "tiles_png",
          "id" : 40,
+         "assetId" : "@textures/tiles_png",
          "filePath" : "textures/tiles.png",
          "fileType" : "png",
          "type" : "38"
@@ -186,6 +212,7 @@
       {
          "name" : "colors_json",
          "id" : 42,
+         "assetId" : "@values/colors_json",
          "filePath" : "values/colors.json",
          "fileType" : "json",
          "type" : "41"
@@ -193,6 +220,7 @@
       {
          "name" : "activity_entity_inspector_xml",
          "id" : 18,
+         "assetId" : "@layouts/activity_entity_inspector_xml",
          "filePath" : "layouts/activity_entity_inspector.xml",
          "fileType" : "xml",
          "type" : "17"
@@ -200,6 +228,7 @@
       {
          "name" : "activity_tileset_editor_xml",
          "id" : 19,
+         "assetId" : "@layouts/activity_tileset_editor_xml",
          "filePath" : "layouts/activity_tileset_editor.xml",
          "fileType" : "xml",
          "type" : "17"
@@ -207,6 +236,7 @@
       {
          "name" : "basic_layout_xml",
          "id" : 20,
+         "assetId" : "@layouts/basic_layout_xml",
          "filePath" : "layouts/basic_layout.xml",
          "fileType" : "xml",
          "type" : "17"
@@ -214,6 +244,7 @@
       {
          "name" : "item_view_xml",
          "id" : 21,
+         "assetId" : "@layouts/item_view_xml",
          "filePath" : "layouts/item_view.xml",
          "fileType" : "xml",
          "type" : "17"
@@ -221,6 +252,7 @@
       {
          "name" : "layout_schema_xsd",
          "id" : 22,
+         "assetId" : "@layouts/layout_schema_xsd",
          "filePath" : "layouts/layout_schema.xsd",
          "fileType" : "xsd",
          "type" : "17"
@@ -228,6 +260,7 @@
       {
          "name" : "list_layout_xml",
          "id" : 23,
+         "assetId" : "@layouts/list_layout_xml",
          "filePath" : "layouts/list_layout.xml",
          "fileType" : "xml",
          "type" : "17"

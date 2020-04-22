@@ -49,7 +49,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
     private ShapeManager shapeManager = new ShapeManager();
     private DrawableManager drawableManager;
 
-    private EntityPrototypeFactory entityPrototypeFactory = new EntityPrototypeFactoryJSON();
+    private EntityPrototypeFactory entityPrototypeFactory;
 
     private void run (String[] args) {
         mainWindow = new MainWindow();
@@ -117,6 +117,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
         ActivityManager.getInstance().addActivity(new TestActivity());
         ActivityManager.getInstance().addActivity(new RecyclerViewActivity());
 
+        entityPrototypeFactory = new EntityPrototypeFactoryJSON(applicationContext);
         entityPrototypeFactory.loadEntities(
                 applicationContext.getResources().getAssetFileAsString(R.entities.entityList_json));
         return true;
@@ -165,8 +166,6 @@ public class Main implements MainWindow.OnWindowCloseListener {
         systemHandler.addSystem(new MovementSystem());
         systemHandler.addSystem(new CollisionSystem());
         systemHandler.addSystem(new MapRenderSystem());
-        systemHandler.addSystem(new RenderTextureSystem());
-        systemHandler.addSystem(new RenderColourSystem());
         systemHandler.addSystem(new RenderDrawableSystem(drawableManager));
         systemHandler.addSystem(new MouseSelectSystem());
 

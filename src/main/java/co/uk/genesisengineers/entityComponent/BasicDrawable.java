@@ -1,5 +1,8 @@
 package co.uk.genesisengineers.entityComponent;
 
+import content.Context;
+import content.entityPrototypeFactory.ComponentAttributes;
+import drawable.DrawableManager;
 import entity.component.ComponentBase;
 import util.Vector2Df;
 
@@ -18,6 +21,13 @@ public class BasicDrawable extends ComponentBase {
         this.dimensions= dimensions;
         this.drawableId = drawableId;
         this.rotation = rotation;
+    }
+
+    public BasicDrawable (Context context, ComponentAttributes componentAttributes) {
+        this();
+        this.dimensions = componentAttributes.getVector2Df("dimensions", new Vector2Df(1,1));
+        this.drawableId = context.getResources().getAssetId(componentAttributes.getStringValue("drawableId", ""));
+        this.rotation = componentAttributes.getFloat("", 0f);
     }
 
     @Override

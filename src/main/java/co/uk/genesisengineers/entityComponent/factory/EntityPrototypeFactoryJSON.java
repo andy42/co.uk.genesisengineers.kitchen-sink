@@ -1,5 +1,6 @@
 package co.uk.genesisengineers.entityComponent.factory;
 
+import content.Context;
 import content.entityPrototypeFactory.EntityPrototypeFactory;
 import content.entityPrototypeFactory.json.ComponentAttributesJSON;
 import entity.Entity;
@@ -11,8 +12,8 @@ public class EntityPrototypeFactoryJSON extends EntityPrototypeFactory {
 
     private ComponentFactory componentFactory;
 
-    public EntityPrototypeFactoryJSON(){
-        componentFactory = new ComponentFactory();
+    public EntityPrototypeFactoryJSON(Context context){
+        componentFactory = new ComponentFactory(context);
     }
 
     public EntityPrototypeFactoryJSON(ComponentFactory componentFactory){
