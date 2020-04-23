@@ -33,15 +33,12 @@ public class KeyboardControllerSystem extends SystemBase implements KeyEventList
     }
 
     private int axisUpdater (boolean positiveState, boolean negativeState, int maxValue) {
-        if (positiveState == true && negativeState == true) {
-            return 0;
-        } else if (positiveState == false && negativeState == false) {
-            return 0;
-        } else if (positiveState == true) {
-            return maxValue;
-        } else {
-            return -maxValue;
+        if (positiveState == true) {
+            return negativeState == true ? 0 : maxValue;
+        } else if (positiveState == false) {
+            return negativeState == false ? 0 : -maxValue;
         }
+        return -maxValue;
     }
 
     @Override

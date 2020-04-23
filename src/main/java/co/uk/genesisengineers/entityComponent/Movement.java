@@ -7,7 +7,7 @@ import util.Vector2Df;
 public class Movement extends ComponentBase {
 
     private Vector2Df startPosition = new Vector2Df(); //this will override position.coordinates
-    private Vector2Df lastPosition = new Vector2Df(); //TODO: removed & update collision system to use a better collision resolution
+    private Vector2Df lastPosition = new Vector2Df();
     private Vector2Df startVelocity = new Vector2Df();
     private Vector2Df acceleration = new Vector2Df();
     private double startTime = 0;

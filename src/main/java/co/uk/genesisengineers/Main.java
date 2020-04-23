@@ -97,7 +97,6 @@ public class Main implements MainWindow.OnWindowCloseListener {
                 applicationContext.getResources().getAssetsOfType(R.textures.TYPE)
         );
 
-        //TODO: make this dynamic loading for all fonts
         Visualisation.getInstance().loadFont(applicationContext, R.fonts.arial_png, R.fonts.arial_fnt);
 
         applicationContext.getResources().loadColors(applicationContext, R.values.colors_json);
@@ -203,7 +202,6 @@ public class Main implements MainWindow.OnWindowCloseListener {
             case NFD_OKAY:
                 System.out.println("Success!");
                 System.out.println(path.getStringUTF8(0));
-                //memFree(path);
                 nNFDi_Free(path.get(0));
                 break;
             case NFD_CANCEL:
