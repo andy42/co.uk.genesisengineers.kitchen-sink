@@ -35,7 +35,7 @@
     </LinearLayout>
     <RecyclerView
             id="recyclerView"
-            background_color="#eaffea"
+            background="@color/red"
             layout_width="MATCH_PARENT"
             layout_height="MATCH_PARENT"/>
 </LinearLayout>

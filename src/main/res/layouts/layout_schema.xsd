@@ -31,9 +31,9 @@
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
-        <xs:attribute type="xs:string" name="background_color"/>
-        <xs:attribute type="xs:string" name="background_pressed_color"/>
-        <xs:attribute type="xs:string" name="background_focused_color"/>
+        <xs:attribute type="xs:string" name="background"/>
+        <xs:attribute type="xs:string" name="background_pressed"/>
+        <xs:attribute type="xs:string" name="background_focused"/>
         <xs:attribute type="xs:string" name="margin_top"/>
         <xs:attribute type="xs:string" name="margin_bottom"/>
         <xs:attribute type="xs:string" name="margin_left"/>
@@ -100,7 +100,7 @@
                 <xs:attribute type="xs:string" name="text"/>
                 <xs:attribute type="xs:string" name="text_size"/>
                 <xs:attribute type="xs:string" name="text_color"/>
-                <xs:attribute type="xs:string" name="background_pressed_color"/>
+                <xs:attribute type="xs:string" name="background_pressed"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>

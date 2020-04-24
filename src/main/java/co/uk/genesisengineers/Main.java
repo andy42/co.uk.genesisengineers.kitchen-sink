@@ -2,29 +2,31 @@ package co.uk.genesisengineers;
 
 import clock.ClockHandler;
 import co.uk.genesisengineers.activites.TestActivity;
-import com.sun.javafx.geom.Vec3f;
+import co.uk.genesisengineers.entityComponent.*;
+import co.uk.genesisengineers.kitchenSink.recyclerViewTest.RecyclerViewActivity;
+import co.uk.genesisengineers.system.*;
 import content.entityPrototypeFactory.EntityPrototypeFactory;
-import content.entityPrototypeFactory.json.EntityPrototypeFactoryJSON;
+import co.uk.genesisengineers.entityComponent.factory.EntityPrototypeFactoryJSON;
+import drawable.DrawableManager;
 import entity.Entity;
+import org.lwjgl.PointerBuffer;
+import org.lwjgl.util.nfd.NativeFileDialog;
+import shape.ShapeManager;
 import entity.EntityHandler;
-import entity.component.types.*;
 import input.KeyEvent;
 import input.KeyMapper;
 import input.MotionEvent;
 import input.Mouse;
 import system.SystemHandler;
-import system.types.*;
 import ui.ActivityManager;
 import util.FileLoader;
 import util.Logger;
 import util.Vector2Df;
 import visualisation.MainWindow;
-import visualisation.Texture;
 import visualisation.TextureManager;
 import visualisation.Visualisation;
 
 import co.uk.genesisengineers.kitchenSink.R;
-import co.uk.genesisengineers.kitchenSink.recyclerViewTest.*;
 
 import java.io.File;
 import java.util.Date;
@@ -34,6 +36,8 @@ import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.system.MemoryUtil.*;
+import static org.lwjgl.util.nfd.NativeFileDialog.*;
 
 public class Main implements MainWindow.OnWindowCloseListener {
     private MainWindow mainWindow;
@@ -42,7 +46,10 @@ public class Main implements MainWindow.OnWindowCloseListener {
     private ActivityManager activityManager;
     private ApplicationContext applicationContext;
 
-    private EntityPrototypeFactory entityPrototypeFactory = new EntityPrototypeFactoryJSON();
+    private ShapeManager shapeManager = new ShapeManager();
+    private DrawableManager drawableManager;
+
+    private EntityPrototypeFactory entityPrototypeFactory;
 
     private void run (String[] args) {
         mainWindow = new MainWindow();
@@ -85,23 +92,31 @@ public class Main implements MainWindow.OnWindowCloseListener {
         visualisation.init(mainWindow.getWindow());
         visualisation.setWindowDimensions(windowWidth, windowHeight);
 
-        // load textures
-        Texture texture = TextureManager.getInstance().addTexture(
-                applicationContext.getResources().getAssetFilePath(R.textures.test_texture_png));
-        texture.addTextureRegion(new Vector2Df(0, 0), new Vector2Df(9, 9));
+        TextureManager.getInstance().load(
+                applicationContext,
+                applicationContext.getResources().getAssetsOfType(R.textures.TYPE)
+        );
 
-        //texture = TextureManager.getInstance().addTexture("textures/tiles.png");
-        texture = TextureManager.getInstance().addTexture(
-                applicationContext.getResources().getAssetFilePath(R.textures.tiles_png));
-        for (int i = 0; i < 21; i++) {
-            texture.addTextureRegion(new Vector2Df(64 * i, 0), new Vector2Df(64, 64));
-        }
+        Visualisation.getInstance().loadFont(applicationContext, R.fonts.arial_png, R.fonts.arial_fnt);
 
-        Visualisation.getInstance().loadFonts();
+        applicationContext.getResources().loadColors(applicationContext, R.values.colors_json);
+
+        shapeManager.loadShapes(applicationContext,
+                applicationContext.getResources().getAssetsOfType(R.shapes.TYPE));
+
+        drawableManager =  DrawableManager.createInstance(shapeManager, TextureManager.getInstance());
+        drawableManager.load(
+                applicationContext,
+                applicationContext.getResources().getAssetsOfType(R.drawables.TYPE));
+
+        drawableManager.createColorDrawables(
+                applicationContext.getResources().getColorList(),
+                shapeManager.getShape(R.shapes.square_top_left_json));
 
         ActivityManager.getInstance().addActivity(new TestActivity());
         ActivityManager.getInstance().addActivity(new RecyclerViewActivity());
 
+        entityPrototypeFactory = new EntityPrototypeFactoryJSON(applicationContext);
         entityPrototypeFactory.loadEntities(
                 applicationContext.getResources().getAssetFileAsString(R.entities.entityList_json));
         return true;
@@ -109,11 +124,13 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
     private void worldInit () {
 
-        entityHandler.addEntity(entityPrototypeFactory.cloneEntity("player"));
+       entityHandler.addEntity(entityPrototypeFactory.cloneEntity("player"));
 
-        Entity entity = entityHandler.createEntity();
+        Entity entity;
+
+        entity = entityHandler.createEntity();
         entity.addComponent(new Position(45));
-        entity.addComponent(new BasicTexturedSquare(new Vector2Df(100, 100), 0, 0));
+        entity.addComponent(new BasicDrawable(new Vector2Df(100, 100), R.drawables.text_json, 45));
         entity.addComponent(new Collision(new Vector2Df(100, 100)));
         entity.addComponent(new Movement(new Vector2Df(100, 300), //startPosition
                 new Vector2Df(0, 0), //startVelocity
@@ -122,7 +139,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
         entity = entityHandler.createEntity();
         entity.addComponent(new Position());
-        entity.addComponent(new BasicColouredSquare(new Vector2Df(100, 100), new Vec3f(0f, 1f, 0f)));
+        entity.addComponent(new BasicDrawable(new Vector2Df(100, 100), R.drawables.redSquare_json, 0));
         entity.addComponent(new Collision(new Vector2Df(100, 100)));
         entity.addComponent(new Movement(new Vector2Df(200, 300), //startPosition
                 new Vector2Df(0, 0), //startVelocity
@@ -131,7 +148,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
         entity = entityHandler.createEntity();
         entity.addComponent(new Position());
-        entity.addComponent(new BasicColouredSquare(new Vector2Df(50, 50), new Vec3f(1f, 0f, 0f)));
+        entity.addComponent(new BasicDrawable(new Vector2Df(100, 100), R.drawables.greenCircle_json, 45));
         entity.addComponent(new Collision(new Vector2Df(50, 50)));
         entity.addComponent(new Select(new Vector2Df(60, 60), 0,0,false));
         entity.addComponent(new Movement(new Vector2Df(300, 300), //startPosition
@@ -141,15 +158,14 @@ public class Main implements MainWindow.OnWindowCloseListener {
 
         entity = entityHandler.createEntity();
         entity.addComponent(new Position(20, 20));
-        entity.addComponent(new MapSquare(new Vector2Df(8, 4), new Vector2Df(64, 64)));
+        entity.addComponent(new MapSquare(R.drawables.tiles_json, new Vector2Df(8, 4), new Vector2Df(64, 64)));
 
 
         systemHandler.addSystem(new KeyboardControllerSystem());
         systemHandler.addSystem(new MovementSystem());
         systemHandler.addSystem(new CollisionSystem());
         systemHandler.addSystem(new MapRenderSystem());
-        systemHandler.addSystem(new RenderTextureSystem());
-        systemHandler.addSystem(new RenderColourSystem());
+        systemHandler.addSystem(new RenderDrawableSystem(drawableManager));
         systemHandler.addSystem(new MouseSelectSystem());
 
         systemHandler.init(entityHandler);
@@ -178,6 +194,34 @@ public class Main implements MainWindow.OnWindowCloseListener {
             Thread.sleep(time);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void checkResult(int result, PointerBuffer path) {
+        switch (result) {
+            case NFD_OKAY:
+                System.out.println("Success!");
+                System.out.println(path.getStringUTF8(0));
+                nNFDi_Free(path.get(0));
+                break;
+            case NFD_CANCEL:
+                System.out.println("User pressed cancel.");
+                break;
+            default: // NFD_ERROR
+                System.err.format("Error: %s\n", NativeFileDialog.NFD_GetError());
+        }
+    }
+
+
+    private static void openSingle() {
+        PointerBuffer outPath = memAllocPointer(1);
+        try {
+            checkResult(
+                    NFD_OpenDialog("png,jpg;pdf", null, outPath),
+                    outPath
+            );
+        } finally {
+            memFree(outPath);
         }
     }
 
@@ -225,6 +269,10 @@ public class Main implements MainWindow.OnWindowCloseListener {
             }
 
             systemHandler.update();
+
+            drawableManager.draw(R.drawables.redSquare_json, new Vector2Df(100, 100), new Vector2Df(100, 100), 0);
+            drawableManager.draw(R.drawables.ringGreen_json, new Vector2Df(200, 100), new Vector2Df(100, 100), 0);
+            drawableManager.draw(R.drawables.blueCircle_json, new Vector2Df(300, 100), new Vector2Df(100, 100), 0);
             ActivityManager.getInstance().update();
             ActivityManager.getInstance().renderActivityList();
 

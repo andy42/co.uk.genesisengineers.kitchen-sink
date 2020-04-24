@@ -11,11 +11,12 @@
         "type":"Movement",
         "startPosition":"100,100"
       }, {
-        "type":"BasicTexturedSquare",
+        "type":"BasicDrawable",
         "dimensions":"25,25",
-        "textureId":0,
-        "textureRegionIndex":0
-      }, {
+        "drawableId":"@drawables/text_json",
+
+        "rotation":0.0
+       }, {
         "type":"Select",
         "dimensions":"30,30",
         "textureId":0,

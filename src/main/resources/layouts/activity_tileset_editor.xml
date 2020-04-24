@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ScrollView xmlns:ge="http://www.w3.org/2001/XMLSchema-instance" ge:noNamespaceSchemaLocation="layout_schema.xsd" layout_width="WRAP_CONTENT" layout_height="250" orientation="vertical">
-  <LinearLayout id="25" background_color="#e2e2e2" layout_width="WRAP_CONTENT" layout_height="WRAP_CONTENT" gravity="top" orientation="vertical">
-    <EditText id="26" background_color="#efefef" background_focused_color="#ffffff" text="" hint_text="hint text" padding_top="10" padding_bottom="10" padding_left="10" padding_right="10" text_color="#000000" text_size="5" layout_gravity="left" layout_width="300" layout_height="35" />
-    <EditText id="27" background_color="#efefef" background_focused_color="#ffffff" text="" hint_text="imageWidth" padding_top="10" padding_bottom="10" padding_left="10" padding_right="10" text_color="#000000" text_size="5" layout_gravity="left" layout_width="300" layout_height="35" />
-  </LinearLayout>
-</ScrollView>
