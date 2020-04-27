@@ -28,7 +28,7 @@ run/debug configurations
 click add/plus syimble
 select aplication
 
-for "co.uk.genesisengineers.Main class" pick main from kitchen-sink
+for "co.uk.genesisengineers.kitchenSink.Main class" pick main from kitchen-sink
 for "use classpath of module" pick kitchen-sink_main
 
 
