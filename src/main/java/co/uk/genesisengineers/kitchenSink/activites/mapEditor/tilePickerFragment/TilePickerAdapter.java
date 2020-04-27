@@ -70,9 +70,6 @@ public class TilePickerAdapter extends RecyclerView.Adapter<TilePickerAdapter.Vi
                     selctedItem(index);
                 }
             });
-//            view.setOnClickListener((View root ) -> {
-//                selctedItem(index);
-//            });
         }
 
         public void bind(Item item, int index){
