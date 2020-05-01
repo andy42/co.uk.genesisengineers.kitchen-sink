@@ -10,6 +10,8 @@ import content.entityPrototypeFactory.EntityPrototypeFactory;
 import co.uk.genesisengineers.kitchenSink.entityComponent.factory.EntityPrototypeFactoryJSON;
 import drawable.DrawableManager;
 import entity.Entity;
+import events.Event;
+import events.EventManager;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.util.nfd.NativeFileDialog;
 import shape.ShapeManager;
@@ -168,6 +170,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
         systemHandler.addSystem(new MapRenderSystem());
         systemHandler.addSystem(new RenderDrawableSystem(drawableManager));
         systemHandler.addSystem(new MouseSelectSystem());
+        systemHandler.addSystem(new MapEditorSystem());
 
         systemHandler.init(entityHandler);
     }
@@ -269,11 +272,14 @@ public class Main implements MainWindow.OnWindowCloseListener {
                 keyEvent = KeyMapper.getInstance().getNextKeyEvent();
             }
 
+            Event event = EventManager.getInstance().getNext();
+            while (event != null){
+                systemHandler.dispatchEvent(event);
+                event = EventManager.getInstance().getNext();
+            }
+
             systemHandler.update();
 
-            drawableManager.draw(R.drawables.redSquare_json, new Vector2Df(100, 100), new Vector2Df(100, 100), 0);
-            drawableManager.draw(R.drawables.ringGreen_json, new Vector2Df(200, 100), new Vector2Df(100, 100), 0);
-            drawableManager.draw(R.drawables.blueCircle_json, new Vector2Df(300, 100), new Vector2Df(100, 100), 0);
             ActivityManager.getInstance().update();
             ActivityManager.getInstance().renderActivityList();
 

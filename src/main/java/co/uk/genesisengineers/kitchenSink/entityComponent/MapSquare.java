@@ -88,8 +88,21 @@ public class MapSquare extends ComponentBase {
         tile.drawableIndex = drawableIndex;
     }
 
+    public void setTileTexture (Vector2Df position, DrawableArray drawableArray, int drawableIndex) {
+        MapTile tile = getMapTile(position);
+        if (tile == null) {
+            return;
+        }
+        tile.drawableArray = drawableArray;
+        tile.drawableIndex = drawableIndex;
+    }
+
     public MapTile getMapTile (int x, int y) {
         return mapArray.get(x + y * (int) boardDimensions.x);
+    }
+
+    public MapTile getMapTile (Vector2Df position) {
+        return getMapTile((int)position.x, (int)position.y);
     }
 
     public static class MapTile {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <LinearLayout xmlns:ge="http://www.w3.org/2001/XMLSchema-instance"
       ge:noNamespaceSchemaLocation="layout_schema.xsd"
-        layout_width="250"
-              layout_height="250"
+        layout_width="500"
+              layout_height="400"
       orientation="vertical">
     <LinearLayout
             id="navbar"
@@ -28,7 +28,7 @@
                     layout_height="WRAP_CONTENT"
                     layout_weight="1"
                     margin_left="5"
-                    text="title"/>
+                    text="Walls"/>
     </LinearLayout>
   <View id="container"
           layout_width="MATCH_PARENT"
