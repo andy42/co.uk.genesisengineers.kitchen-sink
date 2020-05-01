@@ -1,43 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<ScrollView xmlns:ge="http://www.w3.org/2001/XMLSchema-instance"
-            ge:noNamespaceSchemaLocation="layout_schema.xsd"
-        layout_width="WRAP_CONTENT"
-        layout_height="250"
-        orientation="vertical">
-    <LinearLayout id="fistView"
-                  background="@color/red"
-                  layout_width="WRAP_CONTENT"
-                  layout_height="WRAP_CONTENT"
-                  gravity="top"
-                  orientation="vertical">
-        <EditText id="fileNameEditText"
-                  background="@color/red"
-                  background_focused="@color/red"
-                  text=""
-                  hint_text="hint text"
-                  padding_top="10"
-                  padding_bottom="10"
-                  padding_left="10"
-                  padding_right="10"
-                  text_color="#000000"
-                  text_size="5"
-                  layout_gravity="left"
-                  layout_width="300"
-                  layout_height="35"/>
-
-        <EditText id="fileNameEditText"
-                  background="@color/red"
-                  background_focused="@color/red"
-                  text=""
-                  hint_text="imageWidth"
-                  padding_top="10"
-                  padding_bottom="10"
-                  padding_left="10"
-                  padding_right="10"
-                  text_color="#000000"
-                  text_size="5"
-                  layout_gravity="left"
-                  layout_width="300"
-                  layout_height="35"/>
+<LinearLayout xmlns:ge="http://www.w3.org/2001/XMLSchema-instance"
+      ge:noNamespaceSchemaLocation="layout_schema.xsd"
+        layout_width="250"
+              layout_height="250"
+      orientation="vertical">
+    <LinearLayout
+            id="navbar"
+            layout_width="MATCH_PARENT"
+            layout_height="WRAP_CONTENT"
+            orientation="horizontal"
+            background="@color/white">
+            <FrameLayout
+                    id="backButton"
+                    layout_width="WRAP_CONTENT"
+                    layout_height="WRAP_CONTENT">
+                <View
+                        layout_width="25"
+                        layout_height="25"
+                        margin_left="2"
+                        margin_right="2"
+                        margin_top="2"
+                        margin_bottom="2"
+                        background="@drawables/backArrow_json"/>
+            </FrameLayout>
+            <TextView
+                    layout_width="0"
+                    layout_height="WRAP_CONTENT"
+                    layout_weight="1"
+                    margin_left="5"
+                    text="title"/>
     </LinearLayout>
-</ScrollView>
+  <View id="container"
+          layout_width="MATCH_PARENT"
+        layout_height="0"
+        layout_weight="1"/>
+</LinearLayout>
