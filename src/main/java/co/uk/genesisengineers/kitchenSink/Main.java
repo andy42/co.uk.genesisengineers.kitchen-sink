@@ -1,9 +1,7 @@
 package co.uk.genesisengineers.kitchenSink;
 
 import clock.ClockHandler;
-import co.uk.genesisengineers.kitchenSink.R;
-import co.uk.genesisengineers.kitchenSink.activites.mapEditor.TileSetEditorActivity;
-import co.uk.genesisengineers.kitchenSink.activites.recyclerViewTest.RecyclerViewActivity;
+import co.uk.genesisengineers.kitchenSink.activites.mapEditor.MapEditorActivity;
 import co.uk.genesisengineers.kitchenSink.entityComponent.*;
 import co.uk.genesisengineers.kitchenSink.system.*;
 import content.entityPrototypeFactory.EntityPrototypeFactory;
@@ -28,7 +26,6 @@ import util.Vector2Df;
 import visualisation.MainWindow;
 import visualisation.TextureManager;
 import visualisation.Visualisation;
-
 
 import java.io.File;
 import java.util.Date;
@@ -115,9 +112,9 @@ public class Main implements MainWindow.OnWindowCloseListener {
                 applicationContext.getResources().getColorList(),
                 shapeManager.getShape(R.shapes.square_top_left_json));
 
-        //ActivityManager.getInstance().addActivity(new TestActivity());
-        //ActivityManager.getInstance().addActivity(new RecyclerViewActivity());
-        ActivityManager.getInstance().addActivity(new TileSetEditorActivity());
+        drawableManager.createTextureDrawables(
+                TextureManager.getInstance().getTextures(),
+                shapeManager.getShape(R.shapes.square_top_left_json));
 
         entityPrototypeFactory = new EntityPrototypeFactoryJSON(applicationContext);
         entityPrototypeFactory.loadEntities(
@@ -132,36 +129,9 @@ public class Main implements MainWindow.OnWindowCloseListener {
         Entity entity;
 
         entity = entityHandler.createEntity();
-        entity.addComponent(new Position(45));
-        entity.addComponent(new BasicDrawable(new Vector2Df(100, 100), R.drawables.text_json, 45));
-        entity.addComponent(new Collision(new Vector2Df(100, 100)));
-        entity.addComponent(new Movement(new Vector2Df(100, 300), //startPosition
-                new Vector2Df(0, 0), //startVelocity
-                new Vector2Df(0, 0) //acceleration
-        ));
-
-        entity = entityHandler.createEntity();
-        entity.addComponent(new Position());
-        entity.addComponent(new BasicDrawable(new Vector2Df(100, 100), R.drawables.redSquare_json, 0));
-        entity.addComponent(new Collision(new Vector2Df(100, 100)));
-        entity.addComponent(new Movement(new Vector2Df(200, 300), //startPosition
-                new Vector2Df(0, 0), //startVelocity
-                new Vector2Df(0, 0) //acceleration
-        ));
-
-        entity = entityHandler.createEntity();
-        entity.addComponent(new Position());
-        entity.addComponent(new BasicDrawable(new Vector2Df(100, 100), R.drawables.greenCircle_json, 45));
-        entity.addComponent(new Collision(new Vector2Df(50, 50)));
-        entity.addComponent(new Select(new Vector2Df(60, 60), 0,0,false));
-        entity.addComponent(new Movement(new Vector2Df(300, 300), //startPosition
-                new Vector2Df(0, 0), //startVelocity
-                new Vector2Df(0, 0) //acceleration
-        ));
-
-        entity = entityHandler.createEntity();
-        entity.addComponent(new Position(20, 20));
-        entity.addComponent(new MapSquare(R.drawables.tiles_json, new Vector2Df(8, 4), new Vector2Df(64, 64)));
+        entity.addComponent(new Position(0, 0));
+        entity.addComponent(new MapSquare(R.drawables.tiles_json, new Vector2Df(20, 20), new Vector2Df(64, 64)));
+        entity.getId();
 
 
         systemHandler.addSystem(new KeyboardControllerSystem());
@@ -173,6 +143,8 @@ public class Main implements MainWindow.OnWindowCloseListener {
         systemHandler.addSystem(new MapEditorSystem());
 
         systemHandler.init(entityHandler);
+
+        ActivityManager.getInstance().addActivity(new MapEditorActivity(entity));
     }
 
     private long getCurrentTime(){

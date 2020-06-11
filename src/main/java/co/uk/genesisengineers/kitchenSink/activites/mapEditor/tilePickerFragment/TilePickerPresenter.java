@@ -12,12 +12,17 @@ import java.util.List;
 public class TilePickerPresenter {
 
     private TilePickerView view;
+    private int drawableArrayId;
+
+    public TilePickerPresenter(int drawableArrayId){
+        this.drawableArrayId = drawableArrayId;
+    }
 
     public void onCreate(DrawableManager drawableManager){
         List<TilePickerAdapter.Item> items = new ArrayList<>();
-        DrawableArray drawableArray = (DrawableArray)drawableManager.getDrawable(R.drawables.wallTiles_json);
+        DrawableArray drawableArray = (DrawableArray)drawableManager.getDrawable(drawableArrayId);
         for(int i=0; i< drawableArray.size(); i++){
-            items.add(new TilePickerAdapter.Item(R.drawables.wallTiles_json, i));
+            items.add(new TilePickerAdapter.Item(drawableArrayId, i));
         }
         view.setItems(items);
     }

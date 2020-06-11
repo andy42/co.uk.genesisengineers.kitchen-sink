@@ -37,16 +37,21 @@ public class MapRenderSystem extends SystemBase {
 
 
         MapSquare.MapTile mapTile;
-        for (int x = 0; x < mapSquare.getBoardDimensions().x; x++) {
-            for (int y = 0; y < mapSquare.getBoardDimensions().y; y++) {
-                mapTile = mapSquare.getMapTile(x, y);
-                if (mapTile == null)
-                    continue;
-                if(mapTile.drawableArray == null)
-                    continue;
+        for(int layerIndex = 0; layerIndex < mapSquare.getLayerCount(); layerIndex++) {
+            if(mapSquare.isMapLayerVisable(layerIndex) == false){
+                continue;
+            }
+            for (int x = 0; x < mapSquare.getBoardDimensions().x; x++) {
+                for (int y = 0; y < mapSquare.getBoardDimensions().y; y++) {
+                    mapTile = mapSquare.getMapTile(x, y, layerIndex);
+                    if (mapTile == null)
+                        continue;
+                    if (mapTile.drawableArray == null)
+                        continue;
 
-                tilePosition = mapSquare.getTileDimensions().multiply(new Vector2Df(x, y)).add(mapPosition);
-                mapTile.drawableArray.draw(tilePosition, mapSquare.getTileDimensions(), 0, mapTile.drawableIndex);
+                    tilePosition = mapSquare.getTileDimensions().multiply(new Vector2Df(x, y)).add(mapPosition);
+                    mapTile.drawableArray.draw(tilePosition, mapSquare.getTileDimensions(), 0, mapTile.drawableIndex);
+                }
             }
         }
     }

@@ -3,9 +3,10 @@ package co.uk.genesisengineers.kitchenSink.activites.mapEditor.tilePickerFragmen
 import co.uk.genesisengineers.kitchenSink.R;
 import content.Context;
 import drawable.DrawableManager;
+import ui.activity.Activity;
 import ui.activity.Fragment;
 import ui.LayoutInflater;
-import ui.view.GridLayoutManager;
+import ui.view.recyclerLayoutManager.GridLayoutManager;
 import ui.view.RecyclerView;
 import ui.view.View;
 import ui.view.ViewGroup;
@@ -17,17 +18,25 @@ public class TilePickerFragment extends Fragment implements TilePickerView, Tile
     private RecyclerView recyclerView;
     private TilePickerAdapter adapter;
     private TilePickerPresenter presenter;
+    private int drawableArrayId;
+    private String title;
+    private TilePickerTitleInterface tilePickerTitleInterface = null;
+
+    public TilePickerFragment(int drawableArrayId, String title){
+        this.drawableArrayId = drawableArrayId;
+        this.title = title;
+    }
 
     @Override
     public void onCreate(Context context) {
         super.onCreate(context);
-        presenter = new TilePickerPresenter();
+        presenter = new TilePickerPresenter(drawableArrayId);
     }
 
     @Override
     public View onCreateView(ViewGroup viewGroup) {
         LayoutInflater layoutInflater = new LayoutInflater();
-        View view =  layoutInflater.inflate(getActivity(), R.layouts.fragment_tile_picker_xml, viewGroup);
+        View view =  layoutInflater.inflate(getActivity(), R.layouts.fragment_tile_picker_xml, viewGroup, false);
         return view;
     }
 
@@ -47,6 +56,14 @@ public class TilePickerFragment extends Fragment implements TilePickerView, Tile
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if(activity instanceof TilePickerTitleInterface){
+            ((TilePickerTitleInterface)activity).setTilePickerTitle(title);
+        }
+    }
+
+    @Override
     public void setItems(List<TilePickerAdapter.Item> items) {
         adapter.setItems(items);
     }
@@ -56,5 +73,9 @@ public class TilePickerFragment extends Fragment implements TilePickerView, Tile
         if(presenter != null) {
             presenter.onItemSelcted(item);
         }
+    }
+
+    public interface TilePickerTitleInterface{
+        void setTilePickerTitle(String title);
     }
 }

@@ -3,6 +3,8 @@ package co.uk.genesisengineers.kitchenSink.system;
 import co.uk.genesisengineers.kitchenSink.R;
 import co.uk.genesisengineers.kitchenSink.entityComponent.MapSquare;
 import co.uk.genesisengineers.kitchenSink.entityComponent.Position;
+import co.uk.genesisengineers.kitchenSink.events.MapLayerSelectChangeEvent;
+import co.uk.genesisengineers.kitchenSink.events.MapLayerVisibilityChangeEvent;
 import co.uk.genesisengineers.kitchenSink.events.MapTileChangeEvent;
 import drawable.Drawable;
 import drawable.DrawableArray;
@@ -24,6 +26,7 @@ public class MapEditorSystem extends SystemBase implements EventListener, Motion
 
     private DrawableArray drawableArray= null;
     private int drawableArrayIndex = -1;
+    private int selectedMapLayer = 0;
 
     private ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -53,7 +56,15 @@ public class MapEditorSystem extends SystemBase implements EventListener, Motion
                 this.drawableArray = (DrawableArray)drawable;
                 drawableArrayIndex = mapTileChangeEvent.getDrawableArrayIndex();
             }
-
+        }
+        else if(event.getType() == R.id.MapLayerChange && event instanceof MapLayerSelectChangeEvent){
+            MapLayerSelectChangeEvent mapLayerSelectChangeEvent = (MapLayerSelectChangeEvent)event;
+            selectedMapLayer = mapLayerSelectChangeEvent.layerIndex;
+        }
+        else if(event.getType() == R.id.MapLayerVisibilityChange && event instanceof MapLayerVisibilityChangeEvent){
+            MapSquare mapSquare = (MapSquare) entityList.get(0).getComponent(ComponentBase.Type.MAP_SQUARE);
+            MapLayerVisibilityChangeEvent visibilityChangeEvent = (MapLayerVisibilityChangeEvent)event;
+            mapSquare.setLayerVisibility(visibilityChangeEvent.getLayerIndex(), visibilityChangeEvent.isVisibility());
         }
         return false;
     }
@@ -77,7 +88,7 @@ public class MapEditorSystem extends SystemBase implements EventListener, Motion
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         MapSquare mapSquare;
 
-        if(motionEvent.getAction() != MotionEvent.ACTION_UP) return false;
+        if(motionEvent.getAction() != MotionEvent.ACTION_DOWN && motionEvent.getAction() != MotionEvent.ACTION_MOVE) return false;
 
         for (Entity entity : entityList) {
             mapSquare = (MapSquare) entity.getComponent(ComponentBase.Type.MAP_SQUARE);
@@ -92,7 +103,7 @@ public class MapEditorSystem extends SystemBase implements EventListener, Motion
                 mapCoordinates.x < mapSquare.getBoardDimensions().x &&
                 mapCoordinates.y < mapSquare.getBoardDimensions().y) {
 
-                    mapSquare.setTileTexture(mapCoordinates, drawableArray, drawableArrayIndex);
+                    mapSquare.setTileTexture(mapCoordinates, selectedMapLayer, drawableArray, drawableArrayIndex);
             }
         }
         return false;
