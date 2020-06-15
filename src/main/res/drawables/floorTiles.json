@@ -1,9 +1,9 @@
 {
   "type":"drawableTextureArray",
   "shape":"@shapes/square_json",
-  "texture":"@textures/tiles_png",
+  "texture":"@textures/floor_png",
   "itemWidth":64,
   "itemHeight":64,
-  "itemCount":21,
-  "columns":21
+  "itemCount":216,
+"columns":20
 }

@@ -20,6 +20,7 @@ public class TilePickerAdapter extends RecyclerView.Adapter<TilePickerAdapter.Vi
     private LayoutInflater layoutInflater;
     private List<Item> itemList = new ArrayList<>();
     private int selcted = -1;
+    private OnItemSelectedListener onItemSelectedListener = null;
 
     public TilePickerAdapter(Context context){
         this.context = context;
@@ -46,13 +47,22 @@ public class TilePickerAdapter extends RecyclerView.Adapter<TilePickerAdapter.Vi
         return itemList.size();
     }
 
-    private void selctedItem(int index){
+    private void selectedItem(int index){
         if(selcted != -1){
-            itemList.get(selcted).selcted = false;
+            itemList.get(selcted).selected = false;
         }
         selcted = index;
-        itemList.get(selcted).selcted = true;
+        Item selectedItem = itemList.get(selcted);
+        selectedItem.selected = true;
+
+        if(onItemSelectedListener != null){
+            onItemSelectedListener.OnItemSelected(selectedItem);
+        }
         notifyDataSetChanged();
+    }
+
+    public void setOnItemSelectedListener(OnItemSelectedListener onItemSelectedListener){
+        this.onItemSelectedListener = onItemSelectedListener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -67,14 +77,14 @@ public class TilePickerAdapter extends RecyclerView.Adapter<TilePickerAdapter.Vi
             selected.setVisibility(View.INVISIBLE);
             view.setOnTouchListener((MotionEvent event, View root)->{
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    selctedItem(index);
+                    selectedItem(index);
                 }
             });
         }
 
         public void bind(Item item, int index){
             imageView.setDrawableArray(DrawableManager.getInstance().getDrawable(item.textureArrayId), item.textureIndex);
-            selected.setVisibility((item.selcted) ? View.VISIBLE : View.INVISIBLE);
+            selected.setVisibility((item.selected) ? View.VISIBLE : View.INVISIBLE);
             this.index = index;
         }
     }
@@ -82,10 +92,14 @@ public class TilePickerAdapter extends RecyclerView.Adapter<TilePickerAdapter.Vi
     public static class Item{
         int textureArrayId;
         int textureIndex;
-        boolean selcted = false;
+        boolean selected = false;
         public Item(int textureArrayId, int textureIndex){
             this.textureArrayId = textureArrayId;
             this.textureIndex = textureIndex;
         }
+    }
+
+    public interface OnItemSelectedListener{
+        void OnItemSelected(Item item);
     }
 }
