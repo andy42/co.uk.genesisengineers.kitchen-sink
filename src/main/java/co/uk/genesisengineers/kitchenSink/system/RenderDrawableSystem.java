@@ -1,13 +1,13 @@
 package co.uk.genesisengineers.kitchenSink.system;
 
-import drawable.DrawableManager;
-import entity.Entity;
-import entity.EntityHandler;
-import entity.component.ComponentBase;
+import co.uk.genesisengineers.core.drawable.DrawableManager;
+import co.uk.genesisengineers.core.entity.Entity;
+import co.uk.genesisengineers.core.entity.EntityHandler;
+import co.uk.genesisengineers.core.entity.component.ComponentBase;
 import co.uk.genesisengineers.kitchenSink.entityComponent.BasicDrawable;
 import co.uk.genesisengineers.kitchenSink.entityComponent.Position;
-import system.SystemBase;
-import visualisation.Visualisation;
+import co.uk.genesisengineers.core.system.SystemBase;
+import co.uk.genesisengineers.core.visualisation.Visualisation;
 
 import java.util.ArrayList;
 

@@ -1,25 +1,25 @@
-package co.uk.genesisengineers.kitchenSink.activites.mapEditor.tileSetPickerFragment;
+package co.uk.genesisengineers.kitchenSink.activites.mapEditor.tilesetPickerFragment;
 
 import co.uk.genesisengineers.kitchenSink.R;
-import content.Context;
-import ui.LayoutInflater;
-import ui.view.RecyclerView;
-import ui.view.TextView;
-import ui.view.View;
-import ui.view.ViewGroup;
+import co.uk.genesisengineers.core.content.Context;
+import co.uk.genesisengineers.core.ui.LayoutInflater;
+import co.uk.genesisengineers.core.ui.view.RecyclerView;
+import co.uk.genesisengineers.core.ui.view.TextView;
+import co.uk.genesisengineers.core.ui.view.View;
+import co.uk.genesisengineers.core.ui.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileSetPickerAdapter extends RecyclerView.Adapter<TileSetPickerAdapter.ViewHolder> {
+public class TilesetPickerAdapter extends RecyclerView.Adapter<TilesetPickerAdapter.ViewHolder> {
 
     private Context context;
     private LayoutInflater layoutInflater;
     private OnItemSelectedListener listener;
 
-    private List<TileSetPickerPresenter.ListItem> items = new ArrayList<>();
+    private List<TilesetPickerPresenter.ListItem> items = new ArrayList<>();
 
-    public TileSetPickerAdapter(Context context){
+    public TilesetPickerAdapter(Context context){
         this.context = context;
         layoutInflater = new LayoutInflater();
     }
@@ -39,7 +39,7 @@ public class TileSetPickerAdapter extends RecyclerView.Adapter<TileSetPickerAdap
         return items.size();
     }
 
-    public void setItems(List<TileSetPickerPresenter.ListItem> items){
+    public void setItems(List<TilesetPickerPresenter.ListItem> items){
         this.items = items;
         this.notifyDataSetChanged();
     }
@@ -50,7 +50,7 @@ public class TileSetPickerAdapter extends RecyclerView.Adapter<TileSetPickerAdap
 
     class ViewHolder extends RecyclerView.ViewHolder{
         private TextView titleView;
-        private TileSetPickerPresenter.ListItem item;
+        private TilesetPickerPresenter.ListItem item;
         public ViewHolder(View view){
             super(view);
             titleView = (TextView)view.findViewById(R.id.title);
@@ -59,13 +59,13 @@ public class TileSetPickerAdapter extends RecyclerView.Adapter<TileSetPickerAdap
             );
         }
 
-        public void bind(TileSetPickerPresenter.ListItem item){
+        public void bind(TilesetPickerPresenter.ListItem item){
             this.item = item;
             titleView.setText(item.name);
         }
     }
 
     public interface OnItemSelectedListener{
-        void OnItemSelected(TileSetPickerPresenter.ListItem item);
+        void OnItemSelected(TilesetPickerPresenter.ListItem item);
     }
 }

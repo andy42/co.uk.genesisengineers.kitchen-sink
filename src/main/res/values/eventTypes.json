@@ -2,5 +2,6 @@
   {"type":"id", "name":"MapTileChange"},
   {"type":"id", "name":"MapLayerChange"},
   {"type":"id", "name":"MapLayerVisibilityChange"},
-  {"type":"id", "name":"MapLayerSelectChangeEvent"}
+  {"type":"id", "name":"MapLayerSelectChangeEvent"},
+  {"type":"id", "name":"MapToolChangeEvent"}
 ]

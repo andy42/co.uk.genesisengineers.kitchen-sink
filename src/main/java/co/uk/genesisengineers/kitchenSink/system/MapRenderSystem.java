@@ -1,13 +1,13 @@
 package co.uk.genesisengineers.kitchenSink.system;
 
-import entity.Entity;
-import entity.EntityHandler;
-import entity.component.ComponentBase;
+import co.uk.genesisengineers.core.entity.Entity;
+import co.uk.genesisengineers.core.entity.EntityHandler;
+import co.uk.genesisengineers.core.entity.component.ComponentBase;
 import co.uk.genesisengineers.kitchenSink.entityComponent.MapSquare;
 import co.uk.genesisengineers.kitchenSink.entityComponent.Position;
-import system.SystemBase;
-import util.Vector2Df;
-import visualisation.Visualisation;
+import co.uk.genesisengineers.core.system.SystemBase;
+import co.uk.genesisengineers.core.util.Vector2Df;
+import co.uk.genesisengineers.core.visualisation.Visualisation;
 
 import java.util.ArrayList;
 

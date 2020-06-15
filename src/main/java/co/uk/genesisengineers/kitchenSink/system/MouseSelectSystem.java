@@ -1,17 +1,17 @@
 package co.uk.genesisengineers.kitchenSink.system;
 
 import com.sun.javafx.geom.Vec3f;
-import entity.Entity;
-import entity.EntityHandler;
-import entity.component.ComponentBase;
+import co.uk.genesisengineers.core.entity.Entity;
+import co.uk.genesisengineers.core.entity.EntityHandler;
+import co.uk.genesisengineers.core.entity.component.ComponentBase;
 import co.uk.genesisengineers.kitchenSink.entityComponent.Collision;
 import co.uk.genesisengineers.kitchenSink.entityComponent.Position;
 import co.uk.genesisengineers.kitchenSink.entityComponent.Select;
-import input.MotionEvent;
-import system.MotionEventListener;
-import system.SystemBase;
-import util.CollisionBox;
-import visualisation.Visualisation;
+import co.uk.genesisengineers.core.input.MotionEvent;
+import co.uk.genesisengineers.core.system.MotionEventListener;
+import co.uk.genesisengineers.core.system.SystemBase;
+import co.uk.genesisengineers.core.util.CollisionBox;
+import co.uk.genesisengineers.core.visualisation.Visualisation;
 
 import java.util.ArrayList;
 

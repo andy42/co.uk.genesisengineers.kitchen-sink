@@ -1,22 +1,22 @@
-package co.uk.genesisengineers.kitchenSink.activites.mapEditor.tileSetPickerFragment;
+package co.uk.genesisengineers.kitchenSink.activites.mapEditor.tilesetPickerFragment;
 
 import co.uk.genesisengineers.kitchenSink.R;
 import co.uk.genesisengineers.kitchenSink.activites.mapEditor.OpenTilePickerFragmentForDrawableInterface;
-import content.Context;
-import ui.LayoutInflater;
-import ui.activity.Activity;
-import ui.activity.Fragment;
-import ui.view.recyclerLayoutManager.LinearLayoutManager;
-import ui.view.RecyclerView;
-import ui.view.View;
-import ui.view.ViewGroup;
+import co.uk.genesisengineers.core.content.Context;
+import co.uk.genesisengineers.core.ui.LayoutInflater;
+import co.uk.genesisengineers.core.ui.activity.Activity;
+import co.uk.genesisengineers.core.ui.activity.Fragment;
+import co.uk.genesisengineers.core.ui.view.recyclerLayoutManager.LinearLayoutManager;
+import co.uk.genesisengineers.core.ui.view.RecyclerView;
+import co.uk.genesisengineers.core.ui.view.View;
+import co.uk.genesisengineers.core.ui.view.ViewGroup;
 
 import java.util.List;
 
-public class TileSetPickerFragment extends Fragment implements TileSetPickerView, TileSetPickerAdapter.OnItemSelectedListener{
+public class TilesetPickerFragment extends Fragment implements TilesetPickerView, TilesetPickerAdapter.OnItemSelectedListener{
 
-    private TileSetPickerPresenter presenter;
-    private TileSetPickerAdapter adapter;
+    private TilesetPickerPresenter presenter;
+    private TilesetPickerAdapter adapter;
     private RecyclerView recyclerView;
 
     private OpenTilePickerFragmentForDrawableInterface openTilePickerFragmentForDrawableInterface;
@@ -24,7 +24,7 @@ public class TileSetPickerFragment extends Fragment implements TileSetPickerView
     @Override
     public void onCreate(Context context) {
         super.onCreate(context);
-        presenter = new TileSetPickerPresenter();
+        presenter = new TilesetPickerPresenter();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class TileSetPickerFragment extends Fragment implements TileSetPickerView
 
         recyclerView = (RecyclerView)view;
         recyclerView.setLayoutManager(new LinearLayoutManager(LinearLayoutManager.VERTICAL));
-        adapter = new TileSetPickerAdapter(getActivity());
+        adapter = new TilesetPickerAdapter(getActivity());
         adapter.setOnItemSelectedListener(this);
         recyclerView.setAdapter(adapter);
 
@@ -55,19 +55,19 @@ public class TileSetPickerFragment extends Fragment implements TileSetPickerView
         }
 
         if(activity instanceof OpenTilePickerFragmentForDrawableInterface == false){
-            throw new RuntimeException("parent activity of TileSetPickerFragment most implement OpenTilePickerFragmentForDrawableInterface");
+            throw new RuntimeException("parent activity of TilesetPickerFragment most implement OpenTilePickerFragmentForDrawableInterface");
         }
 
         openTilePickerFragmentForDrawableInterface = (OpenTilePickerFragmentForDrawableInterface) activity;
     }
 
     @Override
-    public void setItems(List<TileSetPickerPresenter.ListItem> items) {
+    public void setItems(List<TilesetPickerPresenter.ListItem> items) {
         adapter.setItems(items);
     }
 
     @Override
-    public void OnItemSelected(TileSetPickerPresenter.ListItem item) {
+    public void OnItemSelected(TilesetPickerPresenter.ListItem item) {
         presenter.onItemSelected(item);
     }
 

@@ -1,9 +1,9 @@
 package co.uk.genesisengineers.kitchenSink.entityComponent.factory;
 
-import content.Context;
-import content.entityPrototypeFactory.ComponentAttributes;
-import entity.component.ComponentBase;
-import util.Logger;
+import co.uk.genesisengineers.core.content.Context;
+import co.uk.genesisengineers.core.content.entityPrototypeFactory.ComponentAttributes;
+import co.uk.genesisengineers.core.entity.component.ComponentBase;
+import co.uk.genesisengineers.core.util.Logger;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;

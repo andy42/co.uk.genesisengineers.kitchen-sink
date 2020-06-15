@@ -1,14 +1,14 @@
 package co.uk.genesisengineers.kitchenSink.activites.mapEditor.mapLayerFragment;
 
 import co.uk.genesisengineers.kitchenSink.R;
-import content.Context;
-import drawable.Drawable;
-import drawable.DrawableManager;
-import ui.LayoutInflater;
-import ui.view.RecyclerView;
-import ui.view.TextView;
-import ui.view.View;
-import ui.view.ViewGroup;
+import co.uk.genesisengineers.core.content.Context;
+import co.uk.genesisengineers.core.drawable.Drawable;
+import co.uk.genesisengineers.core.drawable.DrawableManager;
+import co.uk.genesisengineers.core.ui.LayoutInflater;
+import co.uk.genesisengineers.core.ui.view.RecyclerView;
+import co.uk.genesisengineers.core.ui.view.TextView;
+import co.uk.genesisengineers.core.ui.view.View;
+import co.uk.genesisengineers.core.ui.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;

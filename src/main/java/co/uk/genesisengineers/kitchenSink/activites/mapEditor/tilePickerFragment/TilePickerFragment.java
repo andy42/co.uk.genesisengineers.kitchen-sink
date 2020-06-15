@@ -1,15 +1,15 @@
 package co.uk.genesisengineers.kitchenSink.activites.mapEditor.tilePickerFragment;
 
 import co.uk.genesisengineers.kitchenSink.R;
-import content.Context;
-import drawable.DrawableManager;
-import ui.activity.Activity;
-import ui.activity.Fragment;
-import ui.LayoutInflater;
-import ui.view.recyclerLayoutManager.GridLayoutManager;
-import ui.view.RecyclerView;
-import ui.view.View;
-import ui.view.ViewGroup;
+import co.uk.genesisengineers.core.content.Context;
+import co.uk.genesisengineers.core.drawable.DrawableManager;
+import co.uk.genesisengineers.core.ui.activity.Activity;
+import co.uk.genesisengineers.core.ui.activity.Fragment;
+import co.uk.genesisengineers.core.ui.LayoutInflater;
+import co.uk.genesisengineers.core.ui.view.recyclerLayoutManager.GridLayoutManager;
+import co.uk.genesisengineers.core.ui.view.RecyclerView;
+import co.uk.genesisengineers.core.ui.view.View;
+import co.uk.genesisengineers.core.ui.view.ViewGroup;
 
 import java.util.List;
 

@@ -1,31 +1,32 @@
 package co.uk.genesisengineers.kitchenSink;
 
-import clock.ClockHandler;
+import co.uk.genesisengineers.core.clock.ClockHandler;
 import co.uk.genesisengineers.kitchenSink.activites.mapEditor.MapEditorActivity;
+import co.uk.genesisengineers.kitchenSink.activites.mapEditor.MapEditorToolsActivity;
 import co.uk.genesisengineers.kitchenSink.entityComponent.*;
 import co.uk.genesisengineers.kitchenSink.system.*;
-import content.entityPrototypeFactory.EntityPrototypeFactory;
+import co.uk.genesisengineers.core.content.entityPrototypeFactory.EntityPrototypeFactory;
 import co.uk.genesisengineers.kitchenSink.entityComponent.factory.EntityPrototypeFactoryJSON;
-import drawable.DrawableManager;
-import entity.Entity;
-import events.Event;
-import events.EventManager;
+import co.uk.genesisengineers.core.drawable.DrawableManager;
+import co.uk.genesisengineers.core.entity.Entity;
+import co.uk.genesisengineers.core.events.Event;
+import co.uk.genesisengineers.core.events.EventManager;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.util.nfd.NativeFileDialog;
-import shape.ShapeManager;
-import entity.EntityHandler;
-import input.KeyEvent;
-import input.KeyMapper;
-import input.MotionEvent;
-import input.Mouse;
-import system.SystemHandler;
-import ui.ActivityManager;
-import util.FileLoader;
-import util.Logger;
-import util.Vector2Df;
-import visualisation.MainWindow;
-import visualisation.TextureManager;
-import visualisation.Visualisation;
+import co.uk.genesisengineers.core.shape.ShapeManager;
+import co.uk.genesisengineers.core.entity.EntityHandler;
+import co.uk.genesisengineers.core.input.KeyEvent;
+import co.uk.genesisengineers.core.input.KeyMapper;
+import co.uk.genesisengineers.core.input.MotionEvent;
+import co.uk.genesisengineers.core.input.Mouse;
+import co.uk.genesisengineers.core.system.SystemHandler;
+import co.uk.genesisengineers.core.ui.ActivityManager;
+import co.uk.genesisengineers.core.util.FileLoader;
+import co.uk.genesisengineers.core.util.Logger;
+import co.uk.genesisengineers.core.util.Vector2Df;
+import co.uk.genesisengineers.core.visualisation.MainWindow;
+import co.uk.genesisengineers.core.visualisation.TextureManager;
+import co.uk.genesisengineers.core.visualisation.Visualisation;
 
 import java.io.File;
 import java.util.Date;
@@ -145,6 +146,7 @@ public class Main implements MainWindow.OnWindowCloseListener {
         systemHandler.init(entityHandler);
 
         ActivityManager.getInstance().addActivity(new MapEditorActivity(entity));
+        ActivityManager.getInstance().addActivity(new MapEditorToolsActivity());
     }
 
     private long getCurrentTime(){

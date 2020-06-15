@@ -1,10 +1,10 @@
 package co.uk.genesisengineers.kitchenSink.entityComponent.factory;
 
-import content.Context;
-import content.entityPrototypeFactory.EntityPrototypeFactory;
-import content.entityPrototypeFactory.json.ComponentAttributesJSON;
-import entity.Entity;
-import entity.component.ComponentBase;
+import co.uk.genesisengineers.core.content.Context;
+import co.uk.genesisengineers.core.content.entityPrototypeFactory.EntityPrototypeFactory;
+import co.uk.genesisengineers.core.content.entityPrototypeFactory.json.ComponentAttributesJSON;
+import co.uk.genesisengineers.core.entity.Entity;
+import co.uk.genesisengineers.core.entity.component.ComponentBase;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

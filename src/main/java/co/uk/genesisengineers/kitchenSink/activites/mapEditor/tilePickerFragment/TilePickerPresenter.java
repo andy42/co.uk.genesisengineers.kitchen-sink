@@ -1,10 +1,9 @@
 package co.uk.genesisengineers.kitchenSink.activites.mapEditor.tilePickerFragment;
 
-import events.EventManager;
+import co.uk.genesisengineers.core.events.EventManager;
 import co.uk.genesisengineers.kitchenSink.events.MapTileChangeEvent;
-import co.uk.genesisengineers.kitchenSink.R;
-import drawable.DrawableArray;
-import drawable.DrawableManager;
+import co.uk.genesisengineers.core.drawable.DrawableArray;
+import co.uk.genesisengineers.core.drawable.DrawableManager;
 
 import java.util.ArrayList;
 import java.util.List;

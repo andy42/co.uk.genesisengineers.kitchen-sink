@@ -4,6 +4,6 @@
   "texture":"@textures/tiles_png",
   "itemWidth":64,
   "itemHeight":64,
-  "itemCount":21,
-  "columns":21
+  "itemCount":52,
+  "columns":64
 }

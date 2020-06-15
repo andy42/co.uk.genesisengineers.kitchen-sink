@@ -1,8 +1,8 @@
 package co.uk.genesisengineers.kitchenSink.entityComponent;
 
-import content.entityPrototypeFactory.ComponentAttributes;
-import entity.component.ComponentBase;
-import util.Vector2Df;
+import co.uk.genesisengineers.core.content.entityPrototypeFactory.ComponentAttributes;
+import co.uk.genesisengineers.core.entity.component.ComponentBase;
+import co.uk.genesisengineers.core.util.Vector2Df;
 
 public class Position extends ComponentBase {
     private Vector2Df coordinates = new Vector2Df();
