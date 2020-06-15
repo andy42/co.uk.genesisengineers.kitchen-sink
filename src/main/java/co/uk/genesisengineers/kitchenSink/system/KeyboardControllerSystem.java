@@ -1,13 +1,13 @@
 package co.uk.genesisengineers.kitchenSink.system;
 
-import entity.Entity;
-import entity.EntityHandler;
-import entity.component.ComponentBase;
+import co.uk.genesisengineers.core.entity.Entity;
+import co.uk.genesisengineers.core.entity.EntityHandler;
+import co.uk.genesisengineers.core.entity.component.ComponentBase;
 import co.uk.genesisengineers.kitchenSink.entityComponent.Movement;
-import input.KeyEvent;
-import system.KeyEventListener;
-import system.SystemBase;
-import util.Vector2Df;
+import co.uk.genesisengineers.core.input.KeyEvent;
+import co.uk.genesisengineers.core.system.KeyEventListener;
+import co.uk.genesisengineers.core.system.SystemBase;
+import co.uk.genesisengineers.core.util.Vector2Df;
 import java.util.ArrayList;
 
 public class KeyboardControllerSystem extends SystemBase implements KeyEventListener {

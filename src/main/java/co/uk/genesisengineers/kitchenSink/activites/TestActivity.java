@@ -1,10 +1,10 @@
 package co.uk.genesisengineers.kitchenSink.activites;
 
 import co.uk.genesisengineers.kitchenSink.R;
-import ui.LayoutInflater;
-import ui.activity.Activity;
-import ui.view.*;
-import util.Logger;
+import co.uk.genesisengineers.core.ui.LayoutInflater;
+import co.uk.genesisengineers.core.ui.activity.Activity;
+import co.uk.genesisengineers.core.ui.view.*;
+import co.uk.genesisengineers.core.util.Logger;
 
 public class TestActivity extends Activity implements View.OnClickListener{
 

@@ -1,9 +1,9 @@
 package co.uk.genesisengineers.kitchenSink.entityInspector;
 
 import co.uk.genesisengineers.kitchenSink.R;
-import ui.activity.Activity;
-import ui.LayoutInflater;
-import ui.view.TextView;
+import co.uk.genesisengineers.core.ui.activity.Activity;
+import co.uk.genesisengineers.core.ui.LayoutInflater;
+import co.uk.genesisengineers.core.ui.view.TextView;
 
 public class EntityInspectorActivity  extends Activity {
 

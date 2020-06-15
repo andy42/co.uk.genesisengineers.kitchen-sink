@@ -6,19 +6,20 @@ import co.uk.genesisengineers.kitchenSink.entityComponent.Position;
 import co.uk.genesisengineers.kitchenSink.events.MapLayerSelectChangeEvent;
 import co.uk.genesisengineers.kitchenSink.events.MapLayerVisibilityChangeEvent;
 import co.uk.genesisengineers.kitchenSink.events.MapTileChangeEvent;
-import drawable.Drawable;
-import drawable.DrawableArray;
-import drawable.DrawableManager;
-import entity.Entity;
-import entity.EntityHandler;
-import entity.component.ComponentBase;
-import events.Event;
-import input.MotionEvent;
-import system.EventListener;
-import system.MotionEventListener;
-import system.SystemBase;
-import util.Logger;
-import util.Vector2Df;
+import co.uk.genesisengineers.kitchenSink.events.ValueEvent;
+import co.uk.genesisengineers.core.drawable.Drawable;
+import co.uk.genesisengineers.core.drawable.DrawableArray;
+import co.uk.genesisengineers.core.drawable.DrawableManager;
+import co.uk.genesisengineers.core.entity.Entity;
+import co.uk.genesisengineers.core.entity.EntityHandler;
+import co.uk.genesisengineers.core.entity.component.ComponentBase;
+import co.uk.genesisengineers.core.events.Event;
+import co.uk.genesisengineers.core.input.MotionEvent;
+import co.uk.genesisengineers.core.system.EventListener;
+import co.uk.genesisengineers.core.system.MotionEventListener;
+import co.uk.genesisengineers.core.system.SystemBase;
+import co.uk.genesisengineers.core.util.Logger;
+import co.uk.genesisengineers.core.util.Vector2Df;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,8 @@ public class MapEditorSystem extends SystemBase implements EventListener, Motion
     private DrawableArray drawableArray= null;
     private int drawableArrayIndex = -1;
     private int selectedMapLayer = 0;
+
+    private int toolType = R.id.paint;
 
     private ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -66,6 +69,10 @@ public class MapEditorSystem extends SystemBase implements EventListener, Motion
             MapLayerVisibilityChangeEvent visibilityChangeEvent = (MapLayerVisibilityChangeEvent)event;
             mapSquare.setLayerVisibility(visibilityChangeEvent.getLayerIndex(), visibilityChangeEvent.isVisibility());
         }
+
+        if(event.getType() == R.id.MapToolChangeEvent){
+            toolType = ( (ValueEvent<Integer>)event ).getValue();
+        }
         return false;
     }
 
@@ -103,7 +110,17 @@ public class MapEditorSystem extends SystemBase implements EventListener, Motion
                 mapCoordinates.x < mapSquare.getBoardDimensions().x &&
                 mapCoordinates.y < mapSquare.getBoardDimensions().y) {
 
-                    mapSquare.setTileTexture(mapCoordinates, selectedMapLayer, drawableArray, drawableArrayIndex);
+                switch (toolType){
+                    case R.id.paint:
+                        mapSquare.setTileTexture(mapCoordinates, selectedMapLayer, drawableArray, drawableArrayIndex);
+                        break;
+                    case R.id.fill:
+                        mapSquare.setAllTileTextures(selectedMapLayer, drawableArray, drawableArrayIndex);
+                        break;
+                    case R.id.eraser:
+                        mapSquare.setTileTexture(mapCoordinates, selectedMapLayer, null, 0);
+                        break;
+                }
             }
         }
         return false;

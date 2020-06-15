@@ -1,6 +1,6 @@
 package co.uk.genesisengineers.kitchenSink;
 
-import content.Context;
+import co.uk.genesisengineers.core.content.Context;
 
 public class ApplicationContext extends Context {
 }

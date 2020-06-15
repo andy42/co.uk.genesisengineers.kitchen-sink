@@ -3,9 +3,9 @@ package co.uk.genesisengineers.kitchenSink.activites.mapEditor.mapLayerFragment;
 import co.uk.genesisengineers.kitchenSink.entityComponent.MapSquare;
 import co.uk.genesisengineers.kitchenSink.events.MapLayerSelectChangeEvent;
 import co.uk.genesisengineers.kitchenSink.events.MapLayerVisibilityChangeEvent;
-import entity.Entity;
-import entity.component.ComponentBase;
-import events.EventManager;
+import co.uk.genesisengineers.core.entity.Entity;
+import co.uk.genesisengineers.core.entity.component.ComponentBase;
+import co.uk.genesisengineers.core.events.EventManager;
 
 import java.util.ArrayList;
 import java.util.List;

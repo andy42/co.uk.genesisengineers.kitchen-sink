@@ -1,10 +1,10 @@
 package co.uk.genesisengineers.kitchenSink.entityComponent;
 
-import content.entityPrototypeFactory.ComponentAttributes;
-import drawable.DrawableArray;
-import drawable.DrawableManager;
-import entity.component.ComponentBase;
-import util.Vector2Df;
+import co.uk.genesisengineers.core.content.entityPrototypeFactory.ComponentAttributes;
+import co.uk.genesisengineers.core.drawable.DrawableArray;
+import co.uk.genesisengineers.core.drawable.DrawableManager;
+import co.uk.genesisengineers.core.entity.component.ComponentBase;
+import co.uk.genesisengineers.core.util.Vector2Df;
 
 import java.util.ArrayList;
 
@@ -118,6 +118,14 @@ public class MapSquare extends ComponentBase {
         tile.drawableIndex = drawableIndex;
     }
 
+    public void setAllTileTextures ( int layerIndex, DrawableArray drawableArray, int drawableIndex) {
+        MapLayer mapLayer = layerArray.get(layerIndex);
+        if(mapLayer == null) {
+            return;
+        }
+        mapLayer.setAllTileTextures(drawableArray, drawableIndex);
+    }
+
     public MapTile getMapTile (int x, int y, int layerIndex) {
         MapLayer mapLayer = layerArray.get(layerIndex);
         if(mapLayer == null) {
@@ -189,6 +197,12 @@ public class MapSquare extends ComponentBase {
             }
             tile.drawableArray = drawableArray;
             tile.drawableIndex = drawableIndex;
+        }
+
+        public void setAllTileTextures(DrawableArray drawableArray, int drawableIndex){
+            for (int i = 0; i < mapArray.size(); i++) {
+                mapArray.get(i).set(drawableArray, drawableIndex);
+            }
         }
 
         public boolean isVisable() {

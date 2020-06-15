@@ -1,7 +1,7 @@
 package co.uk.genesisengineers.kitchenSink.entityComponent;
 
-import content.entityPrototypeFactory.ComponentAttributes;
-import entity.component.ComponentBase;
+import co.uk.genesisengineers.core.content.entityPrototypeFactory.ComponentAttributes;
+import co.uk.genesisengineers.core.entity.component.ComponentBase;
 
 public class KeyboardController extends ComponentBase {
     public KeyboardController () {

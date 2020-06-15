@@ -3,15 +3,14 @@ package co.uk.genesisengineers.kitchenSink.activites.mapEditor;
 import co.uk.genesisengineers.kitchenSink.R;
 import co.uk.genesisengineers.kitchenSink.activites.mapEditor.mapLayerFragment.MapLayerFragment;
 import co.uk.genesisengineers.kitchenSink.activites.mapEditor.tilePickerFragment.TilePickerFragment;
-import co.uk.genesisengineers.kitchenSink.activites.mapEditor.tileSetPickerFragment.TileSetPickerFragment;
-import entity.Entity;
-import ui.LayoutInflater;
-import ui.activity.Activity;
-import ui.view.TextView;
-import ui.view.View;
-import util.Logger;
+import co.uk.genesisengineers.kitchenSink.activites.mapEditor.tilesetPickerFragment.TilesetPickerFragment;
+import co.uk.genesisengineers.core.entity.Entity;
+import co.uk.genesisengineers.core.ui.LayoutInflater;
+import co.uk.genesisengineers.core.ui.activity.Activity;
+import co.uk.genesisengineers.core.ui.view.TextView;
+import co.uk.genesisengineers.core.ui.view.View;
 
-public class MapEditorActivity extends Activity implements OpenTilePickerFragmentForDrawableInterface, TilePickerFragment.TilePickerTitleInterface, TileSetPickerFragment.TileSetPickerInterface{
+public class MapEditorActivity extends Activity implements OpenTilePickerFragmentForDrawableInterface, TilePickerFragment.TilePickerTitleInterface, TilesetPickerFragment.TileSetPickerInterface{
 
     private Entity mapEntity;
     private View backButton;
@@ -38,9 +37,7 @@ public class MapEditorActivity extends Activity implements OpenTilePickerFragmen
         this.navbarTitle = (TextView)findViewById(R.id.navbarTitle);
 
         fragmentManager.replace( R.id.layerContainer, new MapLayerFragment(mapEntity),  true);
-        Logger.info("test");
-        //fragmentManager.replace( R.id.tilePickerContainer, new TilePickerFragment(),  true);
-        fragmentManager.replace( R.id.tilePickerContainer, new TileSetPickerFragment(),  true);
+        fragmentManager.replace( R.id.tilePickerContainer, new TilesetPickerFragment(),  true);
         backButton.setVisibility(View.GONE);
 
         findViewById(R.id.backButton).setOnClickListener((View button) -> {
